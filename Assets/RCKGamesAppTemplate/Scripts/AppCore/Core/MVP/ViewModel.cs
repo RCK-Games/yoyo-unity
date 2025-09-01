@@ -22,13 +22,15 @@ public abstract class ViewModel : AppObject
 
     protected Presenter presenter;
 
-    public virtual void Initialize<TV, TP, TI>(TV _viewModel, object[] _list) where TV : ViewModel where TP : Presenter where TI : Interactor{
+    public virtual void Initialize<TV, TP, TI>(TV _viewModel, object[] _list) where TV : ViewModel where TP : Presenter where TI : Interactor
+    {
         if (presenter == null)
         {
             presenter = gameObject.AddComponent(typeof(TP)) as TP;
-            presenter.Initialize<TV,TP,TI>(_viewModel, (TP)presenter);
+            presenter.Initialize<TV, TP, TI>(_viewModel, (TP)presenter);
         }
     }
+
 
     public virtual void CallPresenter(params object[] list)
     {
