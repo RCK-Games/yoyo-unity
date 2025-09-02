@@ -11,7 +11,9 @@ public enum ViewID
     RegisterViewModel,
     RewardsViewModel,
     VerifyViewModel,
-    WelcomeViewModel
+    WelcomeViewModel,
+    ErrorViewModel,
+    PopUpViewModel
 }
 
 public enum HTTPMethods

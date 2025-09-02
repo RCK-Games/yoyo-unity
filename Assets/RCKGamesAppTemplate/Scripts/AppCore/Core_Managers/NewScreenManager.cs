@@ -52,6 +52,7 @@ public class NewScreenManager : Manager
     {
         backViewStack = new Stack<ViewModel>();
         spawnedViewsList = new List<ViewModel>();
+        backViewStack.Push(currentView);
     }
 
     public void BackToPreviousView()
@@ -66,10 +67,11 @@ public class NewScreenManager : Manager
                 Destroy(currentView.gameObject);
 
             }
-            else {
+            else
+            {
                 currentView.SetActive(false);
             }
-            
+
             currentView = backViewStack.Peek();
             backViewStack.Pop();
         }
