@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a05bc040bf0ec1049afaf49262b12039
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 92430
+  packageName: Image Effects & Filters
+  packageVersion: 1.0
+  assetPath: Assets/ImageEffectFilters/Scenes/SampleScene.unity
+  uploadId: 434659
