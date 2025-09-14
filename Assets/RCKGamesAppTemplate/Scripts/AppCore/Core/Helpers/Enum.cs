@@ -13,7 +13,9 @@ public enum ViewID
     VerifyViewModel,
     WelcomeViewModel,
     ErrorViewModel,
-    PopUpViewModel
+    PopUpViewModel,
+    EditProfileViewModel,
+    EditTastesViewModel,
 }
 
 public enum HTTPMethods
