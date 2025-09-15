@@ -101,8 +101,6 @@ public class RegisterViewModel : ViewModel
         
         Debug.Log(signInData.phone);
 
-        return;
-
         passwordErrorMessage.SetActive(false);
         errorMessage.SetActive(false);
 

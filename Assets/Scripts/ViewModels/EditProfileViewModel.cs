@@ -19,9 +19,25 @@ public class EditProfileViewModel : ViewModel
 
     public void SaveNewProfileInfo()
     {
-        currentUser.name = nameInputText.text;
-        currentUser.related.phone = $"(+{countryValueText.text}) {phoneInputText.text}";
-        Debug.Log(currentUser.related.phone + currentUser.name);
+        
+        if (nameInputText.text != "")
+        {
+            currentUser.name = nameInputText.text;
+        }else{
+            currentUser.name = namePlaceHolder.text;
+        }
+        if (phoneInputText.text != "")
+        {
+            currentUser.related.phone = $"{countryValueText.text} {phoneInputText.text}";
+        }else{
+            currentUser.related.phone = $"{countryValueText.text} {phonePlaceHolder.text}";
+        }
+        Debug.Log(phoneInputText.text);
+        Debug.Log(nameInputText.text);
+        Debug.Log(phonePlaceHolder.text);
+        Debug.Log(namePlaceHolder.text);
+        Debug.Log(currentUser.related.phone);
+        Debug.Log(currentUser.name);
         ApiManager.instance.SetUser(currentUser);
         NewScreenManager.instance.BackToPreviousView();
         NewScreenManager.instance.GetCurrentView().GetComponent<ProfileViewModel>().SetInfo();

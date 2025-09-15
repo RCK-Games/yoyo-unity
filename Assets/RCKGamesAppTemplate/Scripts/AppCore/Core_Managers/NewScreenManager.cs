@@ -186,7 +186,6 @@ public class NewScreenManager : Manager
     {
         foreach (ViewModel viewInstance in mainViews)
         {
-            Debug.Log(viewInstance.name);
             if (((ViewModel)viewInstance.GetComponent(typeof(ViewModel))).GetViewID() == _viewID)
             {
                 this.currentView = viewInstance;

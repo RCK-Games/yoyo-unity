@@ -16,7 +16,7 @@ public class ProfileViewModel : ViewModel
         {
             titleNameValueText.text = "NAME: " + currentUser.name;
             nameValueText.text = currentUser.name;
-            phoneValueText.text = currentUser.related.phone;
+            phoneValueText.text = "+" + currentUser.related.phone;
             emailValueText.text = currentUser.email;
             idValueText.text = "ID: " + currentUser.id.ToString();
             drinkValueText.text = currentUser.related.taste_drink;
