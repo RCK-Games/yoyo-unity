@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.Networking;
+
 
 public class ApiManager : MonoBehaviour
 {
@@ -20,20 +22,32 @@ public class ApiManager : MonoBehaviour
     }
     public string accessToken = "";
     private User currentUser;
+    private static string phoneNumber = "8331021023";
     private static string BASE_API_URL = "https://yoyo-admin-bqaqewb0dhafbthh.canadacentral-01.azurewebsites.net/api/v1";
+    private static string NEXT_URL = "https://yoyo-admin-bqaqewb0dhafbthh.canadacentral-01.azurewebsites.net/api";
     private static string SIGNIN_ENDPOINT = BASE_API_URL + "/auth/signin";
     private static string LOGIN_ENDPOINT = BASE_API_URL + "/auth/login/";
     private static string RESET_PASSWORD_ENDPOINT = BASE_API_URL + "/auth/passwords/reset";
     private static string CHECK_ACCESS_CODE_ENDPOINT = BASE_API_URL + "/auth/access-codes/verification";
     private static string GET_REWARDS_ENDPOINT = BASE_API_URL + "/rewards";
-    private static string GET_PLACES_ENDPOINT = BASE_API_URL + "/places";
+    private static string GET_PLACES_ENDPOINT = BASE_API_URL + "/consumption-centers";
+    private static string GET_EVENTS_ENDPOINT = BASE_API_URL + "/events";
     private static string DELETE_USER_ENDPOINT = BASE_API_URL + "/auth";
     private static string UPDATE_USER_ENDPOINT = BASE_API_URL + "/auth/info";
 
+    
     public User GetUser()
     {
         return currentUser;
     }
+
+    public void GenerateWhatsAppMessage(string message)
+    {
+        string whatsappURL = $"https://api.whatsapp.com/send?phone=+52{phoneNumber}&text={message}";
+        Application.OpenURL(whatsappURL);
+    }
+
+    //sets the current user and updates their information on the server
 
     public void SetUser(User user)
     {
@@ -63,11 +77,14 @@ public class ApiManager : MonoBehaviour
         });
     }
 
+    //API Methods
+
     public void SignIn(SignInRequest signInData, Action<object[]> callback)
     {
         string jsonData = JsonUtility.ToJson(signInData);
         StartCoroutine(MakePostRequest(SIGNIN_ENDPOINT, jsonData, callback, false));
     }
+    
 
     public void LogIn(LoginRequest loginData, Action<object[]> callback)
     {
@@ -99,16 +116,42 @@ public class ApiManager : MonoBehaviour
         StartCoroutine(MakePostRequest(CHECK_ACCESS_CODE_ENDPOINT, jsonData, callback, false));
     }
 
-    public void GetRewards(int limit, int offset, string token, Action<object[]> callback)
+    public void GetRewards(int limit, int offset, Action<object[]> callback)
     {
         string endpoint = $"{GET_REWARDS_ENDPOINT}/{limit}/{offset}";
-        StartCoroutine(MakeGetRequest(endpoint, callback, token));
+        StartCoroutine(MakeGetRequest(endpoint, callback, accessToken));
     }
 
-    public void GetPlaces(int limit, int offset, string token, Action<object[]> callback)
+    public void GetMoreRewards(string nextUrl, Action<object[]> callback)
+    {
+        string endpoint = NEXT_URL + nextUrl;
+        StartCoroutine(MakeGetRequest(endpoint, callback, accessToken));
+    }
+
+    public void GetPlaces(int limit, int offset, Action<object[]> callback)
     {
         string endpoint = $"{GET_PLACES_ENDPOINT}/{limit}/{offset}";
-        StartCoroutine(MakeGetRequest(endpoint, callback, token));
+        StartCoroutine(MakeGetRequest(endpoint, callback, accessToken));
+    }
+
+    public void GetMorePlaces(string nextUrl, Action<object[]> callback)
+    {
+        string endpoint = NEXT_URL + nextUrl;
+        Debug.Log(endpoint);
+        StartCoroutine(MakeGetRequest(endpoint, callback, accessToken));
+    }
+
+    public void GetEvents(int limit, int offset, Action<object[]> callback)
+    {
+        string endpoint = $"{GET_EVENTS_ENDPOINT}/{limit}/{offset}";
+        StartCoroutine(MakeGetRequest(endpoint, callback, accessToken));
+    }
+
+    public void GetMoreEvents(string nextUrl, Action<object[]> callback)
+    {
+        string endpoint = NEXT_URL + nextUrl;
+        Debug.Log(endpoint);
+        StartCoroutine(MakeGetRequest(endpoint, callback, accessToken));
     }
 
     public void DeleteUser(DeleteUserRequest deleteData, string token, Action<object[]> callback)
@@ -122,8 +165,38 @@ public class ApiManager : MonoBehaviour
         string jsonData = JsonUtility.ToJson(updateData);
         StartCoroutine(MakePutRequest(UPDATE_USER_ENDPOINT, jsonData, callback, token));
     }
+    
+    public void SetImageFromUrl(string url, Action<Sprite> callback)
+    {
+        StartCoroutine(LoadSpriteFromUrl(url, callback));
+    }
+
 
     #region Private Helper Methods
+
+    private IEnumerator LoadSpriteFromUrl(string url, Action<Sprite> callback)
+    {
+        using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(url))
+        {
+            yield return uwr.SendWebRequest();
+
+            if (uwr.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Error loading image: " + uwr.error);
+                callback?.Invoke(null);
+            }
+            else
+            {
+                Texture2D texture = DownloadHandlerTexture.GetContent(uwr);
+                Sprite sprite = Sprite.Create(
+                    texture,
+                    new Rect(0, 0, texture.width, texture.height),
+                    new Vector2(0.5f, 0.5f)
+                );
+                callback?.Invoke(sprite);
+            }
+        }
+    }
 
     private string ConvertJsonToQueryParams(string jsonData)
     {
@@ -138,18 +211,18 @@ public class ApiManager : MonoBehaviour
 
             var queryParams = new List<string>();
             string[] pairs = cleanedJson.Split(',');
-            
+
             foreach (string pair in pairs)
             {
                 if (string.IsNullOrEmpty(pair.Trim()))
                     continue;
-                    
+
                 string[] keyValue = pair.Split(':');
                 if (keyValue.Length == 2)
                 {
                     string key = keyValue[0].Trim().Trim('"');
                     string value = keyValue[1].Trim().Trim('"');
-                    
+
                     if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(value))
                     {
                         string encodedKey = UnityEngine.Networking.UnityWebRequest.EscapeURL(key);

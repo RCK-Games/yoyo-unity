@@ -1,16 +1,191 @@
 using UnityEngine;
 using TMPro;
+using System;
 public class PlacesViewModel : ViewModel
 {
-    public TextMeshProUGUI pointsText, nameText;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public GameObject cardPopUpContainer;
+    public GameObject placeItemPrefab, placesContainer, noPlacesText, placesLoadingIcon;
+
+    public GameObject  eventsContainer, noEventsText, eventsLoadingIcon;
+
+    private bool gettingMorePlaces, gettingMoreEvents;
+    public PlacesResponse placesResponse;
+    public PlacesResponse eventsResponse;
+
+    private bool cardValue;
+
     void Start()
     {
-        User user = ApiManager.instance.GetUser();
-        if (user != null)
+        GetPlaces();
+        GetEvents();
+    }
+
+    public void OnDoubleTap()
+    {
+        cardPopUpContainer.SetActive(true);
+    }
+
+    public void SetCardValue(bool value)
+    {
+        cardValue = value;
+    }
+
+    public bool GetCardValue()
+    {
+        return cardValue;
+    }
+
+    public void OnValueChangedPlacesSlider(Vector2 value)
+    {
+        if (value.x > 1.02f)
         {
-            nameText.text = user.name;
-            pointsText.text = $"{user.related.points} POINTS";
+            if (gettingMorePlaces) return;
+            GetMorePlaces();
+        }
+    }
+
+    public void OnValueChangedEventsSlider(Vector2 value)
+    {
+        if (value.x > 1.02f)
+        {
+            if(gettingMoreEvents) return;
+            GetMoreEvents();
+        }
+    }
+
+    private void GetMorePlaces()
+    {
+        Debug.Log(placesResponse.next);
+        if (placesResponse.next != null && placesResponse.next != "")
+        {
+            placesLoadingIcon.SetActive(true);
+            gettingMorePlaces = true;
+            ApiManager.instance.GetMorePlaces(placesResponse.next, (object[] response) =>
+            {
+
+                long responseCode = (long)response[0];
+                string responseText = response[1].ToString();
+                if (responseCode == 200)
+                {
+                    PlacesResponse morePlaces = JsonUtility.FromJson<PlacesResponse>(responseText);
+                    placesResponse.next = morePlaces.next;
+                    placesResponse.prev = morePlaces.prev;
+                    placesResponse.results.AddRange(morePlaces.results);
+                    GetPlacesCallback(morePlaces.results.ToArray());
+                }
+                else
+                {
+                    placesLoadingIcon.SetActive(false);
+                    gettingMorePlaces = false;
+                    Debug.LogError($"GetPlaces failed: {responseText}");
+                }
+            });
+        }
+    }
+
+    private void GetPlaces()
+    {
+        ApiManager.instance.GetPlaces(10, 0, (object[] response) =>
+        {
+
+            long responseCode = (long)response[0];
+            string responseText = response[1].ToString();
+            if (responseCode == 200)
+            {
+                placesResponse = JsonUtility.FromJson<PlacesResponse>(responseText);
+
+                GetPlacesCallback(placesResponse.results.ToArray());
+            }
+            else
+            {
+                Debug.LogError($"GetRewards failed: {responseText}");
+            }
+            
+        });
+    }
+    private void GetPlacesCallback(Place[] results, bool isEvent = false)
+    {
+        if (placesResponse.total == 0)
+        {
+            noPlacesText.SetActive(true);
+            return;
+        }
+
+        foreach (var item in results)
+        {
+            GameObject placeItem = Instantiate(placeItemPrefab, placesContainer.transform);
+            placeItem.GetComponent<PlaceInterface>().SetPlace(item);
+        }
+        placesLoadingIcon.transform.SetAsLastSibling();
+        gettingMorePlaces = false;
+        placesLoadingIcon.SetActive(false);
+    }
+
+    private void GetEvents()
+    {
+        ApiManager.instance.GetEvents(10, 0, (object[] response) =>
+        {
+
+            long responseCode = (long)response[0];
+            string responseText = response[1].ToString();
+            if (responseCode == 200)
+            {
+                eventsResponse = JsonUtility.FromJson<PlacesResponse>(responseText);
+
+                GetEventsCallback(eventsResponse.results.ToArray());
+            }
+            else
+            {
+                Debug.LogError($"GetPlaces failed: {responseText}");
+            }
+            
+        });
+    }
+
+    private void GetEventsCallback(Place[] results)
+    {
+        if (eventsResponse.total == 0)
+        {
+            noEventsText.SetActive(true);
+            return;
+        }
+
+        foreach (var item in results)
+        {
+            GameObject Item = Instantiate(placeItemPrefab, eventsContainer.transform);
+            Item.GetComponent<PlaceInterface>().SetPlace(item);
+        }
+        eventsLoadingIcon.transform.SetAsLastSibling();
+        gettingMoreEvents = false;
+        eventsLoadingIcon.SetActive(false);
+    }
+
+    private void GetMoreEvents()
+    {
+        if (eventsResponse.next != null && eventsResponse.next != "")
+        {
+            eventsLoadingIcon.SetActive(true);
+            gettingMoreEvents = true;
+            ApiManager.instance.GetMorePlaces(eventsResponse.next, (object[] response) =>
+            {
+
+                long responseCode = (long)response[0];
+                string responseText = response[1].ToString();
+                if (responseCode == 200)
+                {
+                    PlacesResponse moreEvents = JsonUtility.FromJson<PlacesResponse>(responseText);
+                    eventsResponse.next = moreEvents.next;
+                    eventsResponse.prev = moreEvents.prev;
+                    eventsResponse.results.AddRange(moreEvents.results);
+                    GetEventsCallback(moreEvents.results.ToArray());
+                }
+                else
+                {
+                    eventsLoadingIcon.SetActive(false);
+                    gettingMoreEvents = false;
+                    Debug.LogError($"GetEvents failed: {responseText}");
+                }
+            });
         }
     }
 

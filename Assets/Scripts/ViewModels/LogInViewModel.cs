@@ -16,6 +16,20 @@ public class LogInViewModel : ViewModel
 
     }
 
+    public void OnClickShowPassword()
+    {
+        if (passwordInput.contentType == TMP_InputField.ContentType.Password)
+        {
+            passwordInput.contentType = TMP_InputField.ContentType.Standard;
+            passwordInput.ForceLabelUpdate();
+        }
+        else
+        {
+            passwordInput.contentType = TMP_InputField.ContentType.Password;
+            passwordInput.ForceLabelUpdate();
+        }
+    }
+
     public void showValidateEmailMessage()
     {
         validateEmailMessage.SetActive(true);
@@ -53,9 +67,10 @@ public class LogInViewModel : ViewModel
             }
             else if (responseCode == 401)
             {
+                errorMessage.SetActive(true);
                 ErrorResponse errorResponse = JsonUtility.FromJson<ErrorResponse>(responseText);
                 Debug.LogError($"Login failed: {errorResponse.error_code}");
-                errorMessage.SetActive(true);
+                
             }
             else
             {

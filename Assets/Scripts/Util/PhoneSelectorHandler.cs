@@ -25,7 +25,7 @@ public class PhoneSelectorHandler : MonoBehaviour
     {
         for (int i = 0; i < countryDropdown.options.Count; i++)
         {
-            if (countryDropdown.options[i].text.ToLower().Contains(searchText.ToLower()))
+            if (countryDropdown.options[i].text.ToLower().Equals(searchText.ToLower()))
             {
                 countryDropdown.value = i;
                 string[] stringParse = countryValue.text.Split('(');

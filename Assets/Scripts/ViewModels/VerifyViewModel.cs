@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Text.RegularExpressions;
+using DG.Tweening;
 public class VerifyViewModel : ViewModel
 {
     public TMP_InputField codeInput;
@@ -27,7 +28,10 @@ public class VerifyViewModel : ViewModel
             {
                 NewScreenManager.instance.ChangeToMainView(ViewID.RegisterViewModel, true);
                 showSuccessAnimation.SetActive(true);
+                showSuccessAnimation.GetComponent<CanvasGroup>().alpha = 1;
+                showSuccessAnimation.GetComponent<CanvasGroup>().DOFade(0, 2).OnComplete(() => showSuccessAnimation.SetActive(false));
                 showErrorText.SetActive(false);
+                NewScreenManager.instance.GetMainView(ViewID.RegisterViewModel).GetComponent<RegisterViewModel>().SetCode(codeInput.text);
                 return;
             }
             else if (responseCode == 404)

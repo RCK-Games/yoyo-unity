@@ -16,6 +16,8 @@ public enum ViewID
     PopUpViewModel,
     EditProfileViewModel,
     EditTastesViewModel,
+    PlacesInfoViewModel,
+    RewardsInfoViewModel,
 }
 
 public enum HTTPMethods

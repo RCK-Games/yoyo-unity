@@ -3,6 +3,8 @@ using TMPro;
 using System;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using Unity.VisualScripting;
+
 public class RegisterViewModel : ViewModel
 {
     public TMP_InputField emailInput, passwordInput, confirmPasswordInput, pronounsInput, ageInput, phoneInput, nameInput, accessCodeInput;
@@ -40,10 +42,63 @@ public class RegisterViewModel : ViewModel
         }
     }
 
+    public void SetCode(string code)
+    {
+        accessCodeInput.text = code;
+    }
+
+    public void OnClickShowPassword()
+    {
+        if (passwordInput.contentType == TMP_InputField.ContentType.Password)
+        {
+            passwordInput.contentType = TMP_InputField.ContentType.Standard;
+            passwordInput.ForceLabelUpdate();
+        }
+        else
+        {
+            passwordInput.contentType = TMP_InputField.ContentType.Password;
+            passwordInput.ForceLabelUpdate();
+        }
+    }
+
+    public void OnClickShowPasswordConfirm()
+    {
+        if (confirmPasswordInput.contentType == TMP_InputField.ContentType.Password)
+        {
+            confirmPasswordInput.contentType = TMP_InputField.ContentType.Standard;
+            confirmPasswordInput.ForceLabelUpdate();
+        }
+        else
+        {
+            confirmPasswordInput.contentType = TMP_InputField.ContentType.Password;
+            confirmPasswordInput.ForceLabelUpdate();
+        }
+    }
+
+    void OnDisable()
+    {
+        errorMessage.SetActive(false);
+        errorMessage.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        emailInput.text = ""; passwordInput.text = ""; ; confirmPasswordInput.text = "";
+        pronounsInput.text = ""; ageInput.text = ""; phoneInput.text = ""; nameInput.text = ""; accessCodeInput.text = "";
+    }
+
     public void OnValueChanged_TermsAccepted(bool value)
     {
         termsAccepted = value;
         termsAcceptedGraphic.SetActive(value);
+    }
+
+    private bool IsValidPassword(string password)
+    {
+        if (string.IsNullOrWhiteSpace(password) || password.Length < 8)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     private bool IsValidEmail(string email)
@@ -54,34 +109,126 @@ public class RegisterViewModel : ViewModel
         return Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase);
     }
 
+    private void ProcessErrorText(string errorText)
+    {
+        errorMessage.SetActive(true);
+        if (errorText.Contains("email"))
+        {
+            errorMessage.GetComponentInChildren<TextMeshProUGUI>().text = "Invalid email format.";
+        }
+        if (errorText.Contains("code"))
+        {
+            errorMessage.GetComponentInChildren<TextMeshProUGUI>().text = "Invalid code";
+        }
+        else if (errorText.Contains("age"))
+        {
+            errorMessage.GetComponentInChildren<TextMeshProUGUI>().text = "Age must be greater than 18.";
+        }
+        else if (errorText.Contains("password"))
+        {
+            errorMessage.GetComponentInChildren<TextMeshProUGUI>().text = "Password must be at least 8 characters long and include uppercase, lowercase, digit, and special character.";
+        }
+        else if (errorText.Contains("terms"))
+        {
+            errorMessage.GetComponentInChildren<TextMeshProUGUI>().text = "Please accept the terms and conditions.";
+        }
+        else if (errorText.Contains("matchKeys"))
+        {
+            errorMessage.GetComponentInChildren<TextMeshProUGUI>().text = "Passwords do not match.";
+        }
+        else if (errorText.Contains("api.error.already_exists"))
+        {
+            errorMessage.GetComponentInChildren<TextMeshProUGUI>().text = "An account with this email already exists.";
+        }
+        else
+        {
+            errorMessage.GetComponentInChildren<TextMeshProUGUI>().text = "Please make sure all fields are completed.";
+        }
+    }
+
+    private bool CheckAllFields()
+    {
+        bool allFieldsFilled = true;
+        string fields = "";
+        if (string.IsNullOrEmpty(emailInput.text))
+        {
+            allFieldsFilled = false;
+            fields += "email ";
+        }
+
+        if (string.IsNullOrEmpty(passwordInput.text) || string.IsNullOrEmpty(confirmPasswordInput.text))
+        {
+            allFieldsFilled = false;
+            fields += "password, ";
+        }
+        if (string.IsNullOrEmpty(ageInput.text))
+        {
+            allFieldsFilled = false;
+            fields += "age, ";
+        }
+        if (string.IsNullOrEmpty(nameInput.text))
+        {
+            allFieldsFilled = false;
+            fields += "name, ";
+        }
+        if (string.IsNullOrEmpty(accessCodeInput.text))
+        {
+            allFieldsFilled = false;
+            fields += "access code, ";
+        }
+        if (string.IsNullOrEmpty(phoneInput.text))
+        {
+            allFieldsFilled = false;
+            fields += "phone, ";
+        }
+
+        if (!allFieldsFilled)
+        {
+            errorMessage.GetComponentInChildren<TextMeshProUGUI>().text = "Please make sure all fields are completed. Missing fields: " + fields;
+        }
+        return allFieldsFilled;
+    }
+
     public void OnClickRegister()
     {
-        if (string.IsNullOrEmpty(emailInput.text) || string.IsNullOrEmpty(passwordInput.text) || string.IsNullOrEmpty(confirmPasswordInput.text)
-            || string.IsNullOrEmpty(pronounsInput.text) || string.IsNullOrEmpty(ageInput.text) || string.IsNullOrEmpty(phoneInput.text)
-            || string.IsNullOrEmpty(nameInput.text) || string.IsNullOrEmpty(accessCodeInput.text))
+        if (!CheckAllFields())
         {
-            errorMessage.SetActive(true);
             scrollRect.normalizedPosition = new Vector2(0, 0);
+            errorMessage.SetActive(true);
             return;
         }
 
         if (!IsValidEmail(emailInput.text))
         {
-            errorMessage.SetActive(true);
+            ProcessErrorText("email");
+            scrollRect.normalizedPosition = new Vector2(0, 0);
+            return;
+        }
+
+        if (!IsValidPassword(passwordInput.text))
+        {
+            ProcessErrorText("password");
+            scrollRect.normalizedPosition = new Vector2(0, 0);
+            return;
+        }
+
+        if(ageInput.text != null && (int.Parse(ageInput.text) < 18))
+        {
+            ProcessErrorText("age");
             scrollRect.normalizedPosition = new Vector2(0, 0);
             return;
         }
 
         if (!termsAccepted)
         {
-            errorMessage.SetActive(true);
+            ProcessErrorText("terms");
             scrollRect.normalizedPosition = new Vector2(0, 0);
             return;
         }
 
         if (passwordInput.text != confirmPasswordInput.text)
         {
-            passwordErrorMessage.SetActive(true);
+            ProcessErrorText("matchKeys");
             scrollRect.normalizedPosition = new Vector2(0, 0);
             return;
         }
@@ -98,10 +245,6 @@ public class RegisterViewModel : ViewModel
             pronouns = pronounsInput.text,
             access_code = accessCodeInput.text
         };
-        
-        Debug.Log(signInData.phone);
-
-        passwordErrorMessage.SetActive(false);
         errorMessage.SetActive(false);
 
         ApiManager.instance.SignIn(signInData, (response) =>
@@ -117,16 +260,16 @@ public class RegisterViewModel : ViewModel
             }
             else if (responseCode == 401)
             {
-                ErrorResponse errorResponse = JsonUtility.FromJson<ErrorResponse>(responseText);
-                Debug.LogError($"SignIn failed: {errorResponse.error_code}");
-                errorMessage.SetActive(true);
+                ProcessErrorText(responseText);
+            }
+            else if (responseCode == 400)
+            {
+                ProcessErrorText("code");
             }
             else
             {
-                Debug.LogError($"SignIn failed: {responseText}");
-                errorMessage.SetActive(true);
+                ProcessErrorText(responseText);
             }
         });
-        NewScreenManager.instance.ChangeToMainView(ViewID.RegisterViewModel, true);
     }
 }

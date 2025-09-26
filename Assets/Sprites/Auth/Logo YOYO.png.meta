@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: 69ef777971d56d14d89ae07b2c89e378
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8541737081197935665
+    second: Logo YOYO_0
+  - first:
+      213: -50537909566597549
+    second: Logo YOYO_1
+  - first:
+      213: -1271705020676655212
+    second: Logo YOYO_2
+  - first:
+      213: -7511598396301349605
+    second: Logo YOYO_3
+  - first:
+      213: 3831020808728161558
+    second: Logo YOYO_4
+  - first:
+      213: -8753900928653820701
+    second: Logo YOYO_5
+  - first:
+      213: -7102515386013926681
+    second: Logo YOYO_6
+  - first:
+      213: -6194842019071832337
+    second: Logo YOYO_7
+  - first:
+      213: -6895366345489322432
+    second: Logo YOYO_8
+  - first:
+      213: -3407981085443427372
+    second: Logo YOYO_9
+  - first:
+      213: 769413274071583547
+    second: Logo YOYO_10
+  - first:
+      213: -1272034857155080057
+    second: Logo YOYO_11
+  - first:
+      213: 1656608131568149086
+    second: Logo YOYO_12
+  - first:
+      213: 2465821828714374562
+    second: Logo YOYO_13
+  - first:
+      213: 4947206999589895567
+    second: Logo YOYO_14
+  - first:
+      213: 7761257987148806377
+    second: Logo YOYO_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Logo YOYO_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2292
+        width: 592
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13cb5998e985a8670800000000000000
+      internalID: 8541737081197935665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo YOYO_1
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 2292
+        width: 594
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 356979cf9047c4ff0800000000000000
+      internalID: -50537909566597549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo YOYO_2
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 2292
+        width: 594
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 497bc7f750ff95ee0800000000000000
+      internalID: -1271705020676655212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo YOYO_3
+      rect:
+        serializedVersion: 2
+        x: 2005
+        y: 2292
+        width: 592
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1d60158e0171c790800000000000000
+      internalID: -7511598396301349605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo YOYO_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1527
+        width: 592
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61d2f5fb0258a2530800000000000000
+      internalID: 3831020808728161558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo YOYO_5
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 1527
+        width: 594
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ec70ac4c75e38680800000000000000
+      internalID: -8753900928653820701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo YOYO_6
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 1527
+        width: 594
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7eab4ec13ebce6d90800000000000000
+      internalID: -7102515386013926681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo YOYO_7
+      rect:
+        serializedVersion: 2
+        x: 2005
+        y: 1527
+        width: 592
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fee4f8d5100870aa0800000000000000
+      internalID: -6194842019071832337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo YOYO_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 763
+        width: 592
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04eecec87dcbe40a0800000000000000
+      internalID: -6895366345489322432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo YOYO_9
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 763
+        width: 594
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d3f4e0524b64b0d0800000000000000
+      internalID: -3407981085443427372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo YOYO_10
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 763
+        width: 594
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3bc186db418daa00800000000000000
+      internalID: 769413274071583547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo YOYO_11
+      rect:
+        serializedVersion: 2
+        x: 2005
+        y: 763
+        width: 592
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7805b557903d85ee0800000000000000
+      internalID: -1272034857155080057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo YOYO_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 592
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e52a42e81547df610800000000000000
+      internalID: 1656608131568149086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo YOYO_13
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 0
+        width: 594
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a5ace383eb583220800000000000000
+      internalID: 2465821828714374562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo YOYO_14
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 0
+        width: 594
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8db1e00e8208a440800000000000000
+      internalID: 4947206999589895567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo YOYO_15
+      rect:
+        serializedVersion: 2
+        x: 2005
+        y: 0
+        width: 592
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e8fa26b40785bb60800000000000000
+      internalID: 7761257987148806377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Logo YOYO_0: 8541737081197935665
+      Logo YOYO_1: -50537909566597549
+      Logo YOYO_10: 769413274071583547
+      Logo YOYO_11: -1272034857155080057
+      Logo YOYO_12: 1656608131568149086
+      Logo YOYO_13: 2465821828714374562
+      Logo YOYO_14: 4947206999589895567
+      Logo YOYO_15: 7761257987148806377
+      Logo YOYO_2: -1271705020676655212
+      Logo YOYO_3: -7511598396301349605
+      Logo YOYO_4: 3831020808728161558
+      Logo YOYO_5: -8753900928653820701
+      Logo YOYO_6: -7102515386013926681
+      Logo YOYO_7: -6194842019071832337
+      Logo YOYO_8: -6895366345489322432
+      Logo YOYO_9: -3407981085443427372
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

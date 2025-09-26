@@ -22,11 +22,13 @@ public class related
     public string gender;
     public string phone;
     public int points;
+    public int total_points; 
     public string pronouns;
     public string access_code_id;
     public string taste_drink;
     public string taste_music;
     public string taste_food;
+    
 }
 
 [Serializable]
