@@ -53,7 +53,6 @@ public class PlacesInfoViewModel : ViewModel
             item.SetActive(false);
         }
         dressCodeContainer.SetActive(true);
-        dressCodeSpacer.SetActive(true);
         tagParent.SetActive(true);
         paymentOptionsContainer.SetActive(true);
         socialMediaContainer.SetActive(true);
@@ -174,7 +173,6 @@ public class PlacesInfoViewModel : ViewModel
         if (_place.dresscode == null || _place.dresscode == "")
         {
             dressCodeContainer.SetActive(false);
-            dressCodeSpacer.SetActive(false);
         }
         else
         {
