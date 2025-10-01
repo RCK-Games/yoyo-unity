@@ -18,6 +18,9 @@ public class PlacesInfoViewModel : ViewModel
     public List<GameObject> paymentOptions = new List<GameObject>();
     public List<GameObject> dressCodeOptions = new List<GameObject>();
 
+    private bool isFromPlace = false;
+    private string eventLink = "";
+
     /// <summary>
     /// Resets the view model when disabled to avoid data leakage between different places.
 
@@ -72,14 +75,34 @@ public class PlacesInfoViewModel : ViewModel
         {
             GameObject.Destroy(child.gameObject);
         }
+        isFromPlace = false;
+        eventLink = "";
+    }
 
+    public void OnClickReserve()
+    {
+        if (!isFromPlace)
+        {
+            string whatsappMessage = "Hello, I would like to make a reservation. In " + titleText.text + ".";
+            ApiManager.instance.GenerateWhatsAppMessage(whatsappMessage);
+        }
+        else
+        {
+            if (eventLink != "")
+            {
+                Application.OpenURL(eventLink);
+            }
+             
+        }
+        
     }
 
     /// <summary>
     /// Initializes the view model with the provided place data.
 
-    public void InitializeViewModel(Place _place)
+    public void InitializeViewModel(Place _place, bool _isFromPlace = false)
     {
+        isFromPlace = _isFromPlace;
         titleText.text = _place.name;
         descriptionText.text = _place.description;
 
@@ -194,9 +217,10 @@ public class PlacesInfoViewModel : ViewModel
         }
 
 
-
+        eventLink = _place.website_url;
         if (_place.website_url == "")
         {
+            
             WebsiteButton.SetActive(false);
         }
         else

@@ -14,7 +14,6 @@ public class ProfileViewModel : ViewModel
         currentUser = ApiManager.instance.GetUser();
         if (currentUser != null)
         {
-            titleNameValueText.text = "NAME: " + currentUser.name;
             nameValueText.text = currentUser.name;
             phoneValueText.text = currentUser.related.phone;
             emailValueText.text = currentUser.email;

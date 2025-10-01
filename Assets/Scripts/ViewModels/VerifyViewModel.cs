@@ -2,10 +2,28 @@ using UnityEngine;
 using TMPro;
 using System.Text.RegularExpressions;
 using DG.Tweening;
+using System.Collections;
 public class VerifyViewModel : ViewModel
 {
     public TMP_InputField codeInput;
     public GameObject showSuccessAnimation, showErrorText;
+
+    IEnumerator waitforSeconds()
+    {
+        yield return new WaitForSeconds(2);
+        showSuccessAnimation.GetComponent<CanvasGroup>().DOFade(0, 1).OnComplete(() => showSuccessAnimation.SetActive(false));
+        showErrorText.SetActive(false);
+        NewScreenManager.instance.ChangeToMainView(ViewID.RegisterViewModel, true);
+        NewScreenManager.instance.GetMainView(ViewID.RegisterViewModel).GetComponent<RegisterViewModel>().SetCode(codeInput.text);
+    }
+
+    public void OnClickPaste()
+    {
+        if (GUIUtility.systemCopyBuffer != null && Regex.IsMatch(GUIUtility.systemCopyBuffer, @"^[a-zA-Z0-9]+$"))
+        {
+            codeInput.text = GUIUtility.systemCopyBuffer;
+        }
+    }
 
     public void OnClickCheckCode()
     {
@@ -26,12 +44,10 @@ public class VerifyViewModel : ViewModel
 
             if (responseCode == 200 || responseCode == 204)
             {
-                NewScreenManager.instance.ChangeToMainView(ViewID.RegisterViewModel, true);
+
                 showSuccessAnimation.SetActive(true);
                 showSuccessAnimation.GetComponent<CanvasGroup>().alpha = 1;
-                showSuccessAnimation.GetComponent<CanvasGroup>().DOFade(0, 2).OnComplete(() => showSuccessAnimation.SetActive(false));
-                showErrorText.SetActive(false);
-                NewScreenManager.instance.GetMainView(ViewID.RegisterViewModel).GetComponent<RegisterViewModel>().SetCode(codeInput.text);
+                StartCoroutine(waitforSeconds());
                 return;
             }
             else if (responseCode == 404)

@@ -65,7 +65,6 @@ public class NewScreenManager : Manager
             {
                 RemoveSpawnedViewFromList(currentView);
                 Destroy(currentView.gameObject);
-
             }
             else
             {
@@ -73,6 +72,7 @@ public class NewScreenManager : Manager
             }
 
             currentView = backViewStack.Peek();
+            currentView.SetActive(true);
             backViewStack.Pop();
         }
     }
@@ -167,11 +167,11 @@ public class NewScreenManager : Manager
         }
         else
         {
-            ClearMainViews();
+            
             DestroyAllSpawnedViews();
             backViewStack.Clear();
         }
-
+        ClearMainViews();
         ChangeToMainView(_viewID);
     }
 
