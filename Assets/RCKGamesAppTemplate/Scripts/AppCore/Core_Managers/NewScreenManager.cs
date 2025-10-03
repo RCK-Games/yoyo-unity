@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class NewScreenManager : Manager
 {
     private const int MIN_BACK_STACK_COUNT = 1;
+    public GameObject loadingScreen;
 
-    private Stack<ViewModel> backViewStack;
-    private List<ViewModel> spawnedViewsList;
+    public Stack<ViewModel> backViewStack;
+    public List<ViewModel> spawnedViewsList;
 
     [Header("Views Array")]
     [SerializeField]
@@ -53,6 +54,11 @@ public class NewScreenManager : Manager
         backViewStack = new Stack<ViewModel>();
         spawnedViewsList = new List<ViewModel>();
         backViewStack.Push(currentView);
+    }
+
+    public void ShowLoadingScreen(bool _value)
+    {
+        loadingScreen.SetActive(_value);
     }
 
     public void BackToPreviousView()
@@ -222,7 +228,7 @@ public class NewScreenManager : Manager
     {
         foreach(ViewModel view in spawnedViewsList)
         {
-            Destroy(view.gameObject);
+            view.gameObject.SetActive(false);
         }
 
         spawnedViewsList.Clear();

@@ -11,7 +11,7 @@ public class ConfigViewModel : ViewModel
     public void OnClickLogOut()
     {
         ApiManager.instance.accessToken = "";
-        NewScreenManager.instance.ChangeToMainView(ViewID.LogInViewModel, true);
+        NewScreenManager.instance.ChangeToMainView(ViewID.WelcomeViewModel, false);
     }
     public void OnClickOpenFAQ()
     {

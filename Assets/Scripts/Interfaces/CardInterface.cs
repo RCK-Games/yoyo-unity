@@ -8,10 +8,10 @@ public class CardInterface : MonoBehaviour
     public GameObject cardFront, cardBack, contentValue, restPosition, cardPopUp;
     public TextMeshProUGUI pointsText, nameText, totalPointsText, idText;
 
-    private Vector3 firstPosition;
+    public RectTransform firstPosition;
 
     private float lastActivationTime = -1f;
-    private float activationThreshold = 1f;
+    private float activationThreshold = 0.4f;
 
     private bool FirstAnimationDone, isAnimating;
 
@@ -24,11 +24,10 @@ public class CardInterface : MonoBehaviour
         if (user != null)
         {
             nameText.text = user.name;
-            idText.text = user.id.ToString();
+            idText.text = FormatId(user.id);
             totalPointsText.text = $"{user.related.total_points} POINTS";
             pointsText.text = $"{user.related.points} POINTS";
         }
-        firstPosition = contentValue.transform.position;
 
         if (isFullScreen)
         {
@@ -51,18 +50,23 @@ public class CardInterface : MonoBehaviour
         }
     }
 
+    public string FormatId(int id)
+    {
+        return id.ToString().PadLeft(6, '0');
+    }
+
     void OnDisable()
     {
         if (isFullScreen)
         {
-            gameObject.transform.DOMove(firstPosition, 0.5f);
+            gameObject.transform.DOMove(firstPosition.position, 0.5f);
         }
 
     }
 
     public void OnClickClose(GameObject _gameObject)
     {
-        gameObject.transform.DOMove(firstPosition, 0.5f).OnComplete(() =>
+        gameObject.transform.DOMove(firstPosition.position, 0.5f).OnComplete(() =>
         {
             _gameObject.SetActive(false);
         });
@@ -72,7 +76,13 @@ public class CardInterface : MonoBehaviour
 
     public void OnClickAddPoints()
     {
-        ApiManager.instance.GenerateWhatsAppMessage("Hola, me gustaría agregar puntos a mi cuenta.");
+        Debug.Log("Add Points Clicked" + FirstAnimationDone);
+        if (!FirstAnimationDone)
+        {
+            return;
+        }
+        
+        ApiManager.instance.GenerateWhatsAppMessage("Hola, I would like to add points to my account.");
     }
 
     public void onDoubleTap()
@@ -89,9 +99,13 @@ public class CardInterface : MonoBehaviour
 
     public void OnValueChange(Vector2 value)
     {
-        if (contentValue.transform.position.x == firstPosition.x)
+
+        if (isFullScreen)
         {
-            return;
+            if (contentValue.transform.position.x == firstPosition.position.x)
+            {
+                return;
+            }
         }
         if (isAnimating)
         {
@@ -117,7 +131,7 @@ public class CardInterface : MonoBehaviour
     private IEnumerator WaitAndReset()
     {
         yield return new WaitForSeconds(0.5f);
-        contentValue.transform.position = firstPosition;
+        contentValue.transform.position = firstPosition.position;
             isAnimating = false;
     }
 

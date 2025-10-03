@@ -20,6 +20,7 @@ public class PlacesInfoViewModel : ViewModel
 
     private bool isFromPlace = false;
     private string eventLink = "";
+    private string googleMapsLink = "";
 
     /// <summary>
     /// Resets the view model when disabled to avoid data leakage between different places.
@@ -77,6 +78,7 @@ public class PlacesInfoViewModel : ViewModel
         }
         isFromPlace = false;
         eventLink = "";
+        googleMapsLink = "";
     }
 
     public void OnClickReserve()
@@ -96,6 +98,16 @@ public class PlacesInfoViewModel : ViewModel
         }
         
     }
+    
+    public void OnClickGetDirections()
+    {
+        if (googleMapsLink != "")
+        {
+            Application.OpenURL(googleMapsLink);
+        }
+        
+    }
+
 
     /// <summary>
     /// Initializes the view model with the provided place data.
@@ -105,7 +117,7 @@ public class PlacesInfoViewModel : ViewModel
         isFromPlace = _isFromPlace;
         titleText.text = _place.name;
         descriptionText.text = _place.description;
-
+        googleMapsLink = _place.gmaps;
         if (_place.music_genre_list != null && _place.music_genre_list.Count > 0)
         {
             if (_place.music_genre_list[0] != "" && _place.music_genre_list.Count != 1)
@@ -220,7 +232,7 @@ public class PlacesInfoViewModel : ViewModel
         eventLink = _place.website_url;
         if (_place.website_url == "")
         {
-            
+
             WebsiteButton.SetActive(false);
         }
         else

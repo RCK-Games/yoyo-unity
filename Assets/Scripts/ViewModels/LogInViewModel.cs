@@ -52,6 +52,7 @@ public class LogInViewModel : ViewModel
             email = emailInput.text,
             password = passwordInput.text
         };
+        NewScreenManager.instance.ShowLoadingScreen(true);
 
         ApiManager.instance.LogIn(loginData, (response) =>
         {
@@ -60,8 +61,10 @@ public class LogInViewModel : ViewModel
 
             if (responseCode == 200)
             {
-                NewScreenManager.instance.ChangeToMainView(ViewID.PlacesViewModel, true);
+                NewScreenManager.instance.ChangeToMainView(ViewID.PlacesViewModel, false);
                 LoginResponse loginResponse = JsonUtility.FromJson<LoginResponse>(responseText);
+                emailInput.text = "";
+                passwordInput.text = "";
                 Debug.Log(loginResponse);
 
             }
@@ -70,13 +73,14 @@ public class LogInViewModel : ViewModel
                 errorMessage.SetActive(true);
                 ErrorResponse errorResponse = JsonUtility.FromJson<ErrorResponse>(responseText);
                 Debug.LogError($"Login failed: {errorResponse.error_code}");
-                
+
             }
             else
             {
                 Debug.LogError($"Login failed: {responseText}");
                 errorMessage.SetActive(true);
             }
+            NewScreenManager.instance.ShowLoadingScreen(false);
         });
     }
 }

@@ -42,8 +42,15 @@ public class RegisterViewModel : ViewModel
         }
     }
 
+    public void OnClickGoToLogin()
+    {
+        NewScreenManager.instance.BackToPreviousView();
+        NewScreenManager.instance.ChangeToMainView(ViewID.LogInViewModel, true);
+    }
+
     public void SetCode(string code)
     {
+        Debug.Log("SetCode: " + code);
         accessCodeInput.text = code;
     }
 
@@ -153,7 +160,7 @@ public class RegisterViewModel : ViewModel
         if (string.IsNullOrEmpty(emailInput.text))
         {
             allFieldsFilled = false;
-            fields += "email ";
+            fields += "email, ";
         }
 
         if (string.IsNullOrEmpty(passwordInput.text) || string.IsNullOrEmpty(confirmPasswordInput.text))
@@ -184,6 +191,7 @@ public class RegisterViewModel : ViewModel
 
         if (!allFieldsFilled)
         {
+            fields = fields.TrimEnd(' ', ',');
             errorMessage.GetComponentInChildren<TextMeshProUGUI>().text = "Please make sure all fields are completed. Missing fields: " + fields;
         }
         return allFieldsFilled;
@@ -212,7 +220,7 @@ public class RegisterViewModel : ViewModel
             return;
         }
 
-        if(ageInput.text != null && (int.Parse(ageInput.text) < 18))
+        if (ageInput.text != null && (int.Parse(ageInput.text) < 18))
         {
             ProcessErrorText("age");
             scrollRect.normalizedPosition = new Vector2(0, 0);
@@ -246,7 +254,7 @@ public class RegisterViewModel : ViewModel
             access_code = accessCodeInput.text
         };
         errorMessage.SetActive(false);
-
+        NewScreenManager.instance.ShowLoadingScreen(true);
         ApiManager.instance.SignIn(signInData, (response) =>
         {
             long responseCode = (long)response[0];
@@ -270,6 +278,7 @@ public class RegisterViewModel : ViewModel
             {
                 ProcessErrorText(responseText);
             }
+            NewScreenManager.instance.ShowLoadingScreen(true);
         });
     }
 }
