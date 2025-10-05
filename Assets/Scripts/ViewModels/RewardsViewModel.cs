@@ -10,8 +10,8 @@ public class RewardsViewModel : ViewModel
     public GameObject  partnersContainer, noPartnersText, partnersLoadingIcon;
 
     private bool gettingMoreRewards, gettingMorePartners;
-    public PlacesResponse rewardsResponse;
-    public PlacesResponse partnersResponse;
+    public Root rewardsResponse;
+    public Root partnersResponse;
 
     private bool cardValue;
 
@@ -53,18 +53,18 @@ public class RewardsViewModel : ViewModel
         {
             rewardsLoadingIcon.SetActive(true);
             gettingMoreRewards = true;
-            ApiManager.instance.GetMorePlaces(rewardsResponse.next, (object[] response) =>
+            ApiManager.instance.GetMoreRewards(rewardsResponse.next, (object[] response) =>
             {
 
                 long responseCode = (long)response[0];
                 string responseText = response[1].ToString();
                 if (responseCode == 200)
                 {
-                    PlacesResponse morePlaces = JsonUtility.FromJson<PlacesResponse>(responseText);
-                    rewardsResponse.next = morePlaces.next;
-                    rewardsResponse.prev = morePlaces.prev;
-                    rewardsResponse.results.AddRange(morePlaces.results);
-                    GetRewardsCallback(morePlaces.results.ToArray());
+                    Root moreRewards = JsonUtility.FromJson<Root>(responseText);
+                    rewardsResponse.next = moreRewards.next;
+                    rewardsResponse.previous = moreRewards.previous;
+                    rewardsResponse.results.AddRange(moreRewards.results);
+                    GetRewardsCallback(moreRewards.results.ToArray());
                 }
                 else
                 {
@@ -79,15 +79,14 @@ public class RewardsViewModel : ViewModel
     private void GetRewards()
     {
 
-        //TODO: Cambiar a GetRewards
-        ApiManager.instance.GetPlaces(10, 0, (object[] response) =>
+        ApiManager.instance.GetRewards(10, 0, (object[] response) =>
         {
 
             long responseCode = (long)response[0];
             string responseText = response[1].ToString();
             if (responseCode == 200)
             {
-                rewardsResponse = JsonUtility.FromJson<PlacesResponse>(responseText);
+                rewardsResponse = JsonUtility.FromJson<Root>(responseText);
 
                 GetRewardsCallback(rewardsResponse.results.ToArray());
             }
@@ -98,7 +97,7 @@ public class RewardsViewModel : ViewModel
             
         });
     }
-    private void GetRewardsCallback(Place[] results, bool isEvent = false)
+    private void GetRewardsCallback(Result[] results, bool isEvent = false)
     {
         if (rewardsResponse.total == 0)
         {
@@ -109,7 +108,7 @@ public class RewardsViewModel : ViewModel
         foreach (var item in results)
         {
             GameObject placeItem = Instantiate(placeItemPrefab, partnersContainer.transform);
-            placeItem.GetComponent<PlaceInterface>().SetPlace(item);
+            placeItem.GetComponent<RewardInterface>().SetPlace(item);
         }
         rewardsLoadingIcon.transform.SetAsLastSibling();
         gettingMoreRewards = false;
@@ -118,15 +117,14 @@ public class RewardsViewModel : ViewModel
 
     private void GetPartners()
     {
-        //Todo: Cambiar a GetPartners
-        ApiManager.instance.GetEvents(10, 0, (object[] response) =>
+        ApiManager.instance.GetPartners(10, 0, (object[] response) =>
         {
 
             long responseCode = (long)response[0];
             string responseText = response[1].ToString();
             if (responseCode == 200)
             {
-                partnersResponse = JsonUtility.FromJson<PlacesResponse>(responseText);
+                partnersResponse = JsonUtility.FromJson<Root>(responseText);
 
                 GetPartnersCallback(partnersResponse.results.ToArray());
             }
@@ -138,7 +136,7 @@ public class RewardsViewModel : ViewModel
         });
     }
 
-    private void GetPartnersCallback(Place[] results)
+    private void GetPartnersCallback(Result[] results)
     {
         if (partnersResponse.total == 0)
         {
@@ -149,7 +147,7 @@ public class RewardsViewModel : ViewModel
         foreach (var item in results)
         {
             GameObject Item = Instantiate(placeItemPrefab, partnersContainer.transform);
-            Item.GetComponent<PlaceInterface>().SetPlace(item);
+            Item.GetComponent<RewardInterface>().SetPlace(item);
         }
         partnersLoadingIcon.transform.SetAsLastSibling();
         gettingMorePartners = false;
@@ -162,18 +160,18 @@ public class RewardsViewModel : ViewModel
         {
             partnersLoadingIcon.SetActive(true);
             gettingMorePartners = true;
-            ApiManager.instance.GetMorePlaces(partnersResponse.next, (object[] response) =>
+            ApiManager.instance.GetMorePartners(partnersResponse.next, (object[] response) =>
             {
 
                 long responseCode = (long)response[0];
                 string responseText = response[1].ToString();
                 if (responseCode == 200)
                 {
-                    PlacesResponse moreEvents = JsonUtility.FromJson<PlacesResponse>(responseText);
-                    partnersResponse.next = moreEvents.next;
-                    partnersResponse.prev = moreEvents.prev;
-                    partnersResponse.results.AddRange(moreEvents.results);
-                    GetPartnersCallback(moreEvents.results.ToArray());
+                    Root morePartners = JsonUtility.FromJson<Root>(responseText);
+                    partnersResponse.next = morePartners.next;
+                    partnersResponse.previous = morePartners.previous;
+                    partnersResponse.results.AddRange(morePartners.results);
+                    GetPartnersCallback(partnersResponse.results.ToArray());
                 }
                 else
                 {

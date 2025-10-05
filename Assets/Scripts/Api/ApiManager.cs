@@ -30,6 +30,7 @@ public class ApiManager : MonoBehaviour
     private static string RESET_PASSWORD_ENDPOINT = BASE_API_URL + "/auth/passwords/reset";
     private static string CHECK_ACCESS_CODE_ENDPOINT = BASE_API_URL + "/auth/access-codes/verification";
     private static string GET_REWARDS_ENDPOINT = BASE_API_URL + "/rewards";
+    public static string GET_PARTNERS_ENDPOINT = BASE_API_URL + "/partners";
     private static string GET_PLACES_ENDPOINT = BASE_API_URL + "/consumption-centers";
     private static string GET_EVENTS_ENDPOINT = BASE_API_URL + "/events";
     private static string DELETE_USER_ENDPOINT = BASE_API_URL + "/auth";
@@ -148,6 +149,19 @@ public class ApiManager : MonoBehaviour
     }
 
     public void GetMoreEvents(string nextUrl, Action<object[]> callback)
+    {
+        string endpoint = NEXT_URL + nextUrl;
+        Debug.Log(endpoint);
+        StartCoroutine(MakeGetRequest(endpoint, callback, accessToken));
+    }
+
+    public void GetPartners(int limit, int offset, Action<object[]> callback)
+    {
+        string endpoint = $"{GET_PARTNERS_ENDPOINT}/{limit}/{offset}";
+        StartCoroutine(MakeGetRequest(endpoint, callback, accessToken));
+    }
+
+    public void GetMorePartners(string nextUrl, Action<object[]> callback)
     {
         string endpoint = NEXT_URL + nextUrl;
         Debug.Log(endpoint);

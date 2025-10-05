@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using DanielLochner.Assets.SimpleScrollSnap;
 using System.Collections;
-public class RewadsInfoViewModel : ViewModel
+public class RewardsInfoViewModel : ViewModel
 {
     public TextMeshProUGUI titleText, descriptionText, validityText, conditionsText, costText, availableQuantityText;
     public RectTransform contentRebuild;
@@ -32,17 +32,24 @@ public class RewadsInfoViewModel : ViewModel
         }
     }
 
+    public void OnClickRedeem()
+    {
+        // Implement the redeem functionality here
+        Debug.Log("Redeem button clicked for: " + titleText.text);
+
+    }
+
     /// <summary>
     /// Initializes the view model with the provided place data.
 
-    public void InitializeViewModel(Place _reward)
+    public void InitializeViewModel(Result _reward)
     {
         titleText.text = _reward.name;
         descriptionText.text = _reward.description;
-        validityText.text = "valid";
-        conditionsText.text = "_place.terms_and_conditions";
-        costText.text = "_reward.cost.ToString()";
-        availableQuantityText.text = "_reward.available_quantity.ToString()";
+        validityText.text = _reward.starts_on + " - " + _reward.ends_on;
+        conditionsText.text = _reward.conditions;
+        costText.text = _reward.cost.ToString();
+        availableQuantityText.text = _reward.stock.ToString();
 
         scrollSnapContainer.AddComponent<SimpleScrollSnap>();
 
