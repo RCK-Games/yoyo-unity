@@ -53,6 +53,28 @@ public class PlacesViewModel : ViewModel
         }
     }
 
+    public void OnClickReloadPlaces()
+    {
+        foreach (Transform child in placesContainer.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        noPlacesText.SetActive(false);
+        placesLoadingIcon.SetActive(true);
+        GetPlaces();
+    }
+
+    public void OnClickReloadEvents()
+    {
+        foreach (Transform child in eventsContainer.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        noEventsText.SetActive(false);
+        eventsLoadingIcon.SetActive(true);
+        GetEvents();
+    }
+
     private void GetMorePlaces()
     {
         Debug.Log(placesResponse.next);
@@ -114,7 +136,7 @@ public class PlacesViewModel : ViewModel
         foreach (var item in results)
         {
             GameObject placeItem = Instantiate(placeItemPrefab, placesContainer.transform);
-            placeItem.GetComponent<PlaceInterface>().SetPlace(item);
+            placeItem.GetComponent<PlaceInterface>().SetPlace(item, true);
         }
         placesLoadingIcon.transform.SetAsLastSibling();
         gettingMorePlaces = false;
@@ -153,7 +175,7 @@ public class PlacesViewModel : ViewModel
         foreach (var item in results)
         {
             GameObject Item = Instantiate(placeItemPrefab, eventsContainer.transform);
-            Item.GetComponent<PlaceInterface>().SetPlace(item);
+            Item.GetComponent<PlaceInterface>().SetPlace(item, false);
         }
         eventsLoadingIcon.transform.SetAsLastSibling();
         gettingMoreEvents = false;

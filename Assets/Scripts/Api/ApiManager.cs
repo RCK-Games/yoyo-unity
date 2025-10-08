@@ -23,10 +23,10 @@ public class ApiManager : MonoBehaviour
     public string accessToken = "";
     private User currentUser;
     private static string phoneNumber = "8331021023";
-    private static string BASE_API_URL = "https://yoyo-admin-bqaqewb0dhafbthh.canadacentral-01.azurewebsites.net/api/v1";
-    private static string NEXT_URL = "https://yoyo-admin-bqaqewb0dhafbthh.canadacentral-01.azurewebsites.net/api";
+    private static string BASE_API_URL = "http://64.227.105.243/api/v1";
+    private static string NEXT_URL = "http://64.227.105.243/api";
     private static string SIGNIN_ENDPOINT = BASE_API_URL + "/auth/signin";
-    private static string LOGIN_ENDPOINT = BASE_API_URL + "/auth/login/";
+    private static string LOGIN_ENDPOINT = BASE_API_URL + "/auth/login";
     private static string RESET_PASSWORD_ENDPOINT = BASE_API_URL + "/auth/passwords/reset";
     private static string CHECK_ACCESS_CODE_ENDPOINT = BASE_API_URL + "/auth/access-codes/verification";
     private static string GET_REWARDS_ENDPOINT = BASE_API_URL + "/rewards";
@@ -40,6 +40,11 @@ public class ApiManager : MonoBehaviour
     public User GetUser()
     {
         return currentUser;
+    }
+
+    public string GetUserId()
+    {
+        return currentUser.id.ToString().PadLeft(6, '0');
     }
 
     public void GenerateWhatsAppMessage(string message)
@@ -168,10 +173,10 @@ public class ApiManager : MonoBehaviour
         StartCoroutine(MakeGetRequest(endpoint, callback, accessToken));
     }
 
-    public void DeleteUser(DeleteUserRequest deleteData, string token, Action<object[]> callback)
+    public void DeleteUser(DeleteUserRequest deleteData, Action<object[]> callback)
     {
         string jsonData = JsonUtility.ToJson(deleteData);
-        StartCoroutine(MakeDeleteRequest(DELETE_USER_ENDPOINT, jsonData, callback, token));
+        StartCoroutine(MakeDeleteRequest(DELETE_USER_ENDPOINT, jsonData, callback, accessToken));
     }
 
     public void UpdateUser(UpdateUserRequest updateData, string token, Action<object[]> callback)

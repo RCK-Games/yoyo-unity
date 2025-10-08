@@ -11,7 +11,8 @@ public class RegisterViewModel : ViewModel
     public Boolean termsAccepted = false;
     public TextMeshProUGUI countryCode;
     public string Gender;
-    public GameObject errorMessage, passwordErrorMessage, termsAcceptedGraphic;
+    public GameObject errorMessage, passwordErrorMessage, termsAcceptedGraphic, spacerErrorText;
+    public RectTransform formContent;
 
     public ScrollRect scrollRect;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -85,6 +86,7 @@ public class RegisterViewModel : ViewModel
     void OnDisable()
     {
         errorMessage.SetActive(false);
+        spacerErrorText.SetActive(false);
         errorMessage.GetComponentInChildren<TextMeshProUGUI>().text = "";
         emailInput.text = ""; passwordInput.text = ""; ; confirmPasswordInput.text = "";
         pronounsInput.text = ""; ageInput.text = ""; phoneInput.text = ""; nameInput.text = ""; accessCodeInput.text = "";
@@ -119,6 +121,8 @@ public class RegisterViewModel : ViewModel
     private void ProcessErrorText(string errorText)
     {
         errorMessage.SetActive(true);
+        spacerErrorText.SetActive(true);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(formContent);
         if (errorText.Contains("email"))
         {
             errorMessage.GetComponentInChildren<TextMeshProUGUI>().text = "Invalid email format.";
@@ -203,6 +207,9 @@ public class RegisterViewModel : ViewModel
         {
             scrollRect.normalizedPosition = new Vector2(0, 0);
             errorMessage.SetActive(true);
+            spacerErrorText.SetActive(true);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(formContent);
+            
             return;
         }
 
@@ -253,19 +260,22 @@ public class RegisterViewModel : ViewModel
             pronouns = pronounsInput.text,
             access_code = accessCodeInput.text
         };
+        spacerErrorText.SetActive(false);
         errorMessage.SetActive(false);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(formContent);
         NewScreenManager.instance.ShowLoadingScreen(true);
         ApiManager.instance.SignIn(signInData, (response) =>
         {
             long responseCode = (long)response[0];
             string responseText = response[1].ToString();
-
+            Debug.Log(responseText);
             if (responseCode == 200)
             {
                 NewScreenManager.instance.ChangeToMainView(ViewID.LogInViewModel, true);
                 NewScreenManager.instance.GetMainView(ViewID.LogInViewModel).GetComponent<LogInViewModel>().showValidateEmailMessage();
 
             }
+
             else if (responseCode == 401)
             {
                 ProcessErrorText(responseText);
@@ -278,7 +288,7 @@ public class RegisterViewModel : ViewModel
             {
                 ProcessErrorText(responseText);
             }
-            NewScreenManager.instance.ShowLoadingScreen(true);
+            NewScreenManager.instance.ShowLoadingScreen(false);
         });
     }
 }

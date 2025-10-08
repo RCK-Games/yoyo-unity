@@ -83,9 +83,10 @@ public class PlacesInfoViewModel : ViewModel
 
     public void OnClickReserve()
     {
-        if (!isFromPlace)
+        if (isFromPlace)
         {
-            string whatsappMessage = "Hello, I would like to make a reservation. In " + titleText.text + ".";
+            
+            string whatsappMessage = "Hello, I would like to make a reservation. In " + titleText.text + "." + " This is my Id: " + ApiManager.instance.GetUserId();
             ApiManager.instance.GenerateWhatsAppMessage(whatsappMessage);
         }
         else
@@ -125,7 +126,7 @@ public class PlacesInfoViewModel : ViewModel
                 foreach (var genre in _place.music_genre_list)
                 {
                     GameObject tag = Instantiate(tagItemPrefab, TagsContainer.transform);
-                    tag.GetComponentInChildren<TextMeshProUGUI>().text = genre;
+                    tag.GetComponentInChildren<TextMeshProUGUI>().text = genre.Trim();
                 }
                 LayoutRebuilder.ForceRebuildLayoutImmediate(TagsContainer.GetComponent<RectTransform>());
             }
@@ -146,9 +147,10 @@ public class PlacesInfoViewModel : ViewModel
             foreach (var media in _place.gallery)
             {
                 GameObject imageItem = Instantiate(ImageGalleryItemPrefab, ImageGalleryContainer.transform);
+                
                 ApiManager.instance.SetImageFromUrl(media.absolute_url, (Sprite response) =>
                 {
-                    imageItem.GetComponent<Image>().sprite = response;
+                    imageItem.GetComponent<ImageInterface>().setImage(response);
                 });
             }
         }
@@ -163,7 +165,7 @@ public class PlacesInfoViewModel : ViewModel
                 GameObject imageItem = Instantiate(ImageGalleryItemPrefab, ImageGalleryContainer.transform);
                 ApiManager.instance.SetImageFromUrl(_place.media[0].absolute_url, (Sprite response) =>
                 {
-                    imageItem.GetComponent<Image>().sprite = response;
+                    imageItem.GetComponent<ImageInterface>().setImage(response);
                 });
             }
 
@@ -229,7 +231,7 @@ public class PlacesInfoViewModel : ViewModel
         }
 
 
-        eventLink = _place.website_url;
+        eventLink = _place.url;
         if (_place.website_url == "")
         {
 
@@ -305,12 +307,15 @@ public class PlacesInfoViewModel : ViewModel
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentRebuild);
         StartCoroutine(WaitAFrame());
+        
     }
-    
+
     IEnumerator WaitAFrame()
     {
         yield return null;
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentRebuild);
+        yield return null;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(TagsContainer.GetComponent<RectTransform>());
     }
 
 }

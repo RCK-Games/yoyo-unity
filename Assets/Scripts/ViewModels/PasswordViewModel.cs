@@ -17,6 +17,12 @@ public class PasswordViewModel : ViewModel
 
     }
 
+    void OnDisable()
+    {
+        emailInput.text = "";
+        popUpSendMessage.SetActive(false);
+    }
+
     private bool IsValidEmail(string email)
     {
         if (string.IsNullOrWhiteSpace(email))

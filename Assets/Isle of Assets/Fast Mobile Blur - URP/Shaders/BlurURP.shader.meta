@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 414ecf4d33a093d4cb0c8bddd3a171de
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 242848
+  packageName: Fast Mobile Blur - URP
+  packageVersion: 1.0.1
+  assetPath: Assets/Isle of Assets/Fast Mobile Blur - URP/Shaders/BlurURP.shader
+  uploadId: 666373

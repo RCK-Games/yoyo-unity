@@ -5,7 +5,7 @@ public class ScrollRectFocusSettings : MonoBehaviour
 {
     [SerializeField] private RectTransform m_scrollTopReference;
     [SerializeField]  private RectTransform m_scrollBottomReference;
-    [SerializeField]  private RectTransform m_InputTextFocusHeightAdjuster;
+    [SerializeField]  private RectTransform m_InputTextFocusHeightAdjuster, mInputTextFocusHeightAdjusterSmaller;
 
     private ScrollRect m_scrollRect;
     public ScrollRect scrollRect => m_scrollRect;
@@ -22,11 +22,21 @@ public class ScrollRectFocusSettings : MonoBehaviour
         Vector3 middleOfTheScreenWorldPosition = new Vector2(Screen.width / 2, Screen.height / 2);
 
         float middlePointLength = Vector2.Distance(middleOfTheScreenWorldPosition, m_scrollTopReference.position);
+            Debug.Log("childLength: " + childLength + " middlePointLength: " + middlePointLength);
 
         if (childLength > middlePointLength)
         {
-            m_InputTextFocusHeightAdjuster.gameObject.SetActive(true);
 
+            if(childLength - middlePointLength < 600)
+            {
+                m_InputTextFocusHeightAdjuster.gameObject.SetActive(false);
+                mInputTextFocusHeightAdjusterSmaller.gameObject.SetActive(true);
+            }
+            else
+            {
+                m_InputTextFocusHeightAdjuster.gameObject.SetActive(true);
+                mInputTextFocusHeightAdjusterSmaller.gameObject.SetActive(false);
+            }
             LayoutRebuilder.ForceRebuildLayoutImmediate(m_scrollRect.content as RectTransform);
 
             m_scrollRect.verticalNormalizedPosition = 0.0f;
@@ -38,7 +48,7 @@ public class ScrollRectFocusSettings : MonoBehaviour
     public void OnDeselect()
     {
         m_InputTextFocusHeightAdjuster.gameObject.SetActive(false);
-
+        mInputTextFocusHeightAdjusterSmaller.gameObject.SetActive(false);
         m_scrollRect.enabled = true;
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(transform as RectTransform);

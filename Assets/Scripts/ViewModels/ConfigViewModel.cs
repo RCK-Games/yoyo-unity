@@ -1,4 +1,4 @@
-
+using UnityEngine;
 
 public class ConfigViewModel : ViewModel
 {
@@ -16,5 +16,10 @@ public class ConfigViewModel : ViewModel
     public void OnClickOpenFAQ()
     {
         NewScreenManager.instance.ChangeToMainView(ViewID.FAQViewModel, true);
+    }
+
+    public void OnClickOpenTerms()
+    {
+        Application.OpenURL("https://github.com/");
     }
 }

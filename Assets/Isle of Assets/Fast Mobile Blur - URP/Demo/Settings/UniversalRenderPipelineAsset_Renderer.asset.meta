@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 009aac34fcf53ad4c9b54d5cbc626dfd
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 242848
+  packageName: Fast Mobile Blur - URP
+  packageVersion: 1.0.1
+  assetPath: Assets/Isle of Assets/Fast Mobile Blur - URP/Demo/Settings/UniversalRenderPipelineAsset_Renderer.asset
+  uploadId: 666373

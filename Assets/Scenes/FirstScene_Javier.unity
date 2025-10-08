@@ -2935,6 +2935,9 @@ MonoBehaviour:
   drinkPlaceHolder: {fileID: 893326804}
   foodPlaceHolder: {fileID: 567955706}
   musicPlaceHolder: {fileID: 1629699944}
+  clearMUsicButton: {fileID: 0}
+  clearFoodButton: {fileID: 0}
+  clearDrinkButton: {fileID: 0}
 --- !u!224 &118347131
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13851,6 +13854,7 @@ MonoBehaviour:
   codeInput: {fileID: 2067698695994476880}
   showSuccessAnimation: {fileID: 1991445557}
   showErrorText: {fileID: 2068573881}
+  verifyButton: {fileID: 0}
 --- !u!1 &498088641
 GameObject:
   m_ObjectHideFlags: 0
@@ -18357,6 +18361,9 @@ MonoBehaviour:
   namePlaceHolder: {fileID: 257196078}
   phonePlaceHolder: {fileID: 1779157578}
   phoneSelectorHandler: {fileID: 270958916}
+  clearNameButton: {fileID: 0}
+  clearPhoneButton: {fileID: 0}
+  SaveButton: {fileID: 0}
 --- !u!1 &688676558
 GameObject:
   m_ObjectHideFlags: 0
@@ -33836,6 +33843,7 @@ MonoBehaviour:
   nameText: {fileID: 650616657}
   totalPointsText: {fileID: 1189309432}
   idText: {fileID: 1157688617}
+  firstPosition: {fileID: 0}
   isFullScreen: 1
 --- !u!1 &1220956010
 GameObject:
@@ -40836,16 +40844,6 @@ MonoBehaviour:
   partnersContainer: {fileID: 1358790995}
   noPartnersText: {fileID: 267921459}
   partnersLoadingIcon: {fileID: 609595236}
-  rewardsResponse:
-    results: []
-    prev: 
-    total: 0
-    next: 
-  partnersResponse:
-    results: []
-    prev: 
-    total: 0
-    next: 
 --- !u!1 &1467712700
 GameObject:
   m_ObjectHideFlags: 0
@@ -43800,8 +43798,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 139.89636, y: -530.96124}
-  m_SizeDelta: {x: 279.79272, y: 0}
+  m_AnchoredPosition: {x: 138.41202, y: -530.96124}
+  m_SizeDelta: {x: 276.82404, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1605448759
 MonoBehaviour:
@@ -53175,6 +53173,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   networkLoadingCanvas: {fileID: 0}
+  loadingScreen: {fileID: 0}
+  spawnedViewsList: []
   mainViews:
   - {fileID: 727801518}
   - {fileID: 495068931}
@@ -59297,6 +59297,7 @@ MonoBehaviour:
   nameText: {fileID: 974569154}
   totalPointsText: {fileID: 337408568}
   idText: {fileID: 1457347088}
+  firstPosition: {fileID: 0}
   isFullScreen: 0
 --- !u!1 &2124856338
 GameObject:

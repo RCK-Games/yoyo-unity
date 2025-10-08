@@ -5,7 +5,7 @@ public class EditProfileViewModel : ViewModel
 {
     public TMP_InputField nameInputText, phoneInputText;
     private User currentUser;
-    public TextMeshProUGUI countryValueText, namePlaceHolder, phonePlaceHolder;
+    public TextMeshProUGUI countryValueText;
     public PhoneSelectorHandler phoneSelectorHandler;
     public GameObject clearNameButton, clearPhoneButton;
 
@@ -13,12 +13,12 @@ public class EditProfileViewModel : ViewModel
     public void OnSetup(User _currentUser)
     {
         currentUser = _currentUser;
-        namePlaceHolder.text = currentUser.name;
+        nameInputText.text = currentUser.name;
 
         if (currentUser.related.phone.Length > 0)
         {
             Debug.Log(currentUser.related.phone.Split(' '));
-            phonePlaceHolder.text = currentUser.related.phone.Split(' ')[1];
+            phoneInputText.text = currentUser.related.phone.Split(' ')[1];
             phoneSelectorHandler.SearchSpecificCountry(currentUser.related.phone.Split(' ')[0].Replace("(", "").Replace(")", "").Replace("+", ""));
         }
     }
@@ -52,7 +52,7 @@ public class EditProfileViewModel : ViewModel
 
     private void UpdateButton()
     {
-        if (nameInputText.text.Length > 0 || phoneInputText.text.Length > 0)
+        if (nameInputText.text.Length > 0 || phoneInputText.text.Length > 9)
         {
             SaveButton.interactable = true;
         }
@@ -64,7 +64,7 @@ public class EditProfileViewModel : ViewModel
 
     public void OnChangePhoneInput()
     {
-        if (phoneInputText.text.Length > 0)
+        if (phoneInputText.text.Length > 9)
         {
             clearPhoneButton.SetActive(true);
             UpdateButton();
@@ -84,7 +84,7 @@ public class EditProfileViewModel : ViewModel
         }
         else
         {
-            currentUser.name = namePlaceHolder.text;
+            return;
         }
         if (phoneInputText.text != "")
         {
@@ -92,16 +92,11 @@ public class EditProfileViewModel : ViewModel
         }
         else
         {
-            currentUser.related.phone = $"{countryValueText.text} {phonePlaceHolder.text}";
+            return;
         }
-        Debug.Log(phoneInputText.text);
-        Debug.Log(nameInputText.text);
-        Debug.Log(phonePlaceHolder.text);
-        Debug.Log(namePlaceHolder.text);
-        Debug.Log(currentUser.related.phone);
-        Debug.Log(currentUser.name);
-        ApiManager.instance.SetUser(currentUser);
+
         NewScreenManager.instance.BackToPreviousView();
+        ApiManager.instance.SetUser(currentUser);
         NewScreenManager.instance.GetCurrentView().GetComponent<ProfileViewModel>().SetInfo();
     }
 }

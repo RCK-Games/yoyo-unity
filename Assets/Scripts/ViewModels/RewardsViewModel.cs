@@ -5,7 +5,7 @@ public class RewardsViewModel : ViewModel
 {
     public TextMeshProUGUI pointsText;
 
-    public GameObject placeItemPrefab, rewardsContainer, noRewardsIcon, rewardsLoadingIcon;
+    public GameObject ItemPrefab, rewardsContainer, noRewardsIcon, rewardsLoadingIcon;
 
     public GameObject  partnersContainer, noPartnersText, partnersLoadingIcon;
 
@@ -23,6 +23,26 @@ public class RewardsViewModel : ViewModel
             pointsText.text = $"Available Points: {user.related.points}";
         }
         GetRewards();
+        GetPartners();
+    }
+
+    public void OnClickReloadRewards()
+    {
+        foreach (Transform child in rewardsContainer.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        noRewardsIcon.SetActive(false);
+        GetRewards();
+    }
+
+    public void OnClickReloadPartners()
+    {
+        foreach (Transform child in partnersContainer.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        noPartnersText.SetActive(false);
         GetPartners();
     }
 
@@ -97,7 +117,7 @@ public class RewardsViewModel : ViewModel
             
         });
     }
-    private void GetRewardsCallback(Result[] results, bool isEvent = false)
+    private void GetRewardsCallback(ResultObject[] results, bool isEvent = false)
     {
         if (rewardsResponse.total == 0)
         {
@@ -107,8 +127,8 @@ public class RewardsViewModel : ViewModel
 
         foreach (var item in results)
         {
-            GameObject placeItem = Instantiate(placeItemPrefab, partnersContainer.transform);
-            placeItem.GetComponent<RewardInterface>().SetPlace(item);
+            GameObject placeItem = Instantiate(ItemPrefab, rewardsContainer.transform);
+            placeItem.GetComponent<RewardInterface>().SetPlace(item, true);
         }
         rewardsLoadingIcon.transform.SetAsLastSibling();
         gettingMoreRewards = false;
@@ -136,7 +156,7 @@ public class RewardsViewModel : ViewModel
         });
     }
 
-    private void GetPartnersCallback(Result[] results)
+    private void GetPartnersCallback(ResultObject[] results)
     {
         if (partnersResponse.total == 0)
         {
@@ -146,8 +166,8 @@ public class RewardsViewModel : ViewModel
 
         foreach (var item in results)
         {
-            GameObject Item = Instantiate(placeItemPrefab, partnersContainer.transform);
-            Item.GetComponent<RewardInterface>().SetPlace(item);
+            GameObject Item = Instantiate(ItemPrefab, partnersContainer.transform);
+            Item.GetComponent<RewardInterface>().SetPlace(item, false);
         }
         partnersLoadingIcon.transform.SetAsLastSibling();
         gettingMorePartners = false;

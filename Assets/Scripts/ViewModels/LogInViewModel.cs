@@ -58,7 +58,7 @@ public class LogInViewModel : ViewModel
         {
             long responseCode = (long)response[0];
             string responseText = response[1].ToString();
-
+            NewScreenManager.instance.ShowLoadingScreen(false);
             if (responseCode == 200)
             {
                 NewScreenManager.instance.ChangeToMainView(ViewID.PlacesViewModel, false);
@@ -80,7 +80,7 @@ public class LogInViewModel : ViewModel
                 Debug.LogError($"Login failed: {responseText}");
                 errorMessage.SetActive(true);
             }
-            NewScreenManager.instance.ShowLoadingScreen(false);
+            
         });
     }
 }

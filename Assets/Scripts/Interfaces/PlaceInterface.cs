@@ -5,14 +5,16 @@ using UnityEngine.UI;
 
 public class PlaceInterface : MonoBehaviour
 {
-    public TextMeshProUGUI titleText, descriptionText;
+    public TextMeshProUGUI titleText;
 
-    public Image placeImage;
+    public ImageInterface placeImage;
 
     public Place place;
 
+    private bool isFromPlaces;
 
-    public void SetPlace(Place _place)
+
+    public void SetPlace(Place _place, bool _isFromPlaces)
     {
         titleText.text = _place.name;
         place = _place;
@@ -20,17 +22,17 @@ public class PlaceInterface : MonoBehaviour
         {
             ApiManager.instance.SetImageFromUrl(_place.media[0].absolute_url, (Sprite response) =>
             {
-                placeImage.sprite = response;
+                placeImage.setImage(response);
             });
         }
-
+        isFromPlaces = _isFromPlaces;
 
     }
 
     public void OnClick()
     {
         NewScreenManager.instance.ChangeToMainView(ViewID.PlacesInfoViewModel, true);
-        NewScreenManager.instance.GetCurrentView().GetComponent<PlacesInfoViewModel>().InitializeViewModel(place);
+        NewScreenManager.instance.GetCurrentView().GetComponent<PlacesInfoViewModel>().InitializeViewModel(place, isFromPlaces);
     }
 
 

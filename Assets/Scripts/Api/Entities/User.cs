@@ -12,6 +12,7 @@ public class User
     public string created_at;
     public string updated_at;
     public related related;
+    public string avatar;
 }
 
 [Serializable]

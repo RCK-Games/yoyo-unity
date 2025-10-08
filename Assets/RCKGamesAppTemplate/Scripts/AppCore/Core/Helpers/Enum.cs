@@ -18,6 +18,7 @@ public enum ViewID
     EditTastesViewModel,
     PlacesInfoViewModel,
     RewardsInfoViewModel,
+    DeleteAccountViewModel
 }
 
 public enum HTTPMethods

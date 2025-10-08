@@ -3,19 +3,22 @@ using DG.Tweening;
 using TMPro;
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 public class CardInterface : MonoBehaviour
 {
     public GameObject cardFront, cardBack, contentValue, restPosition, cardPopUp;
     public TextMeshProUGUI pointsText, nameText, totalPointsText, idText;
 
-    public RectTransform firstPosition;
+    public RectTransform firstPosition, contentValueRestPosition;
 
     private float lastActivationTime = -1f;
     private float activationThreshold = 0.4f;
 
+    private float animationDuration = 0.3f;
+
     private bool FirstAnimationDone, isAnimating;
 
-    public bool isFullScreen;
+    public bool isFullScreen, isDragging;
 
 
     void OnEnable()
@@ -50,6 +53,11 @@ public class CardInterface : MonoBehaviour
         }
     }
 
+    public void SetIsDragging(bool value)
+    {
+        isDragging = value;
+    }
+
     public string FormatId(int id)
     {
         return id.ToString().PadLeft(6, '0');
@@ -82,7 +90,7 @@ public class CardInterface : MonoBehaviour
             return;
         }
         
-        ApiManager.instance.GenerateWhatsAppMessage("Hola, I would like to add points to my account.");
+        ApiManager.instance.GenerateWhatsAppMessage("Hello, I would like to add points to my account." + " This is my Id: " + ApiManager.instance.GetUserId());
     }
 
     public void onDoubleTap()
@@ -99,6 +107,17 @@ public class CardInterface : MonoBehaviour
 
     public void OnValueChange(Vector2 value)
     {
+        if(!isDragging)
+        {
+            return;
+        }
+        
+
+
+        if (Math.Abs(value.y) > Math.Abs(value.x))
+        {
+            return;
+        }
 
         if (isFullScreen)
         {
@@ -131,14 +150,14 @@ public class CardInterface : MonoBehaviour
     private IEnumerator WaitAndReset()
     {
         yield return new WaitForSeconds(0.5f);
-        contentValue.transform.position = firstPosition.position;
+        contentValue.transform.position = contentValueRestPosition.position;
             isAnimating = false;
     }
 
     public void PlayAnimationFirst()
     {
         isAnimating = true;
-        cardFront.transform.DORotate(new Vector3(0, 90, 0), 0.5f).OnComplete(() => PlayAnimationFirstCallback());
+        cardFront.transform.DORotate(new Vector3(0, 90, 0), animationDuration).OnComplete(() => PlayAnimationFirstCallback());
     }
 
     private void PlayAnimationFirstCallback()
@@ -146,7 +165,7 @@ public class CardInterface : MonoBehaviour
         cardFront.SetActive(false);
         cardBack.transform.eulerAngles = new Vector3(0, 90, 0);
         cardBack.SetActive(true);
-        cardBack.transform.DORotate(new Vector3(0, 180, 0), 0.5f).OnComplete(() =>
+        cardBack.transform.DORotate(new Vector3(0, 180, 0), animationDuration).OnComplete(() =>
         {
             StartCoroutine(WaitAndReset());
             FirstAnimationDone = true;
@@ -156,7 +175,7 @@ public class CardInterface : MonoBehaviour
     public void PlayAnimationSecond()
     {
         isAnimating = true;
-        cardBack.transform.DORotate(new Vector3(0, 90, 0), 0.5f).OnComplete(()=>PlayAnimationSecondCallback());
+        cardBack.transform.DORotate(new Vector3(0, 90, 0), animationDuration).OnComplete(()=>PlayAnimationSecondCallback());
     }
 
     private void PlayAnimationSecondCallback()
@@ -164,7 +183,7 @@ public class CardInterface : MonoBehaviour
         cardFront.SetActive(false);
         cardFront.SetActive(true);
         cardFront.transform.eulerAngles = new Vector3(0, 90, 0);
-        cardFront.transform.DORotate(new Vector3(0, 0, 0), 0.5f).OnComplete(() =>
+        cardFront.transform.DORotate(new Vector3(0, 0, 0), animationDuration).OnComplete(() =>
         {
             StartCoroutine(WaitAndReset());
             FirstAnimationDone = false;

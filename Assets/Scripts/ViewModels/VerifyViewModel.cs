@@ -10,6 +10,8 @@ public class VerifyViewModel : ViewModel
     public GameObject showSuccessAnimation, showErrorText;
     public Button verifyButton;
 
+    private string codeHandler;
+
     IEnumerator waitforSeconds()
     {
         showSuccessAnimation.GetComponent<CanvasGroup>().DOFade(1, 0.5f);
@@ -17,7 +19,27 @@ public class VerifyViewModel : ViewModel
         showSuccessAnimation.GetComponent<CanvasGroup>().DOFade(0, 1).OnComplete(() => showSuccessAnimation.SetActive(false));
         showErrorText.SetActive(false);
         NewScreenManager.instance.ChangeToMainView(ViewID.RegisterViewModel, true);
-        NewScreenManager.instance.GetMainView(ViewID.RegisterViewModel).GetComponent<RegisterViewModel>().SetCode(codeInput.text);
+        NewScreenManager.instance.GetMainView(ViewID.RegisterViewModel).GetComponent<RegisterViewModel>().SetCode(codeHandler);
+        codeInput.text = "";
+    }
+
+    public void OnClickShowPassword()
+    {
+        if (codeInput.contentType == TMP_InputField.ContentType.Password)
+        {
+            codeInput.contentType = TMP_InputField.ContentType.Standard;
+            codeInput.ForceLabelUpdate();
+        }
+        else
+        {
+            codeInput.contentType = TMP_InputField.ContentType.Password;
+            codeInput.ForceLabelUpdate();
+        }
+    }
+
+    public void OnDisable()
+    {
+        showErrorText.SetActive(false);
         codeInput.text = "";
     }
 
@@ -27,7 +49,7 @@ public class VerifyViewModel : ViewModel
         {
             codeInput.text = GUIUtility.systemCopyBuffer;
         }
-        if(codeInput.text.Length == 6)
+        if (codeInput.text.Length == 6)
         {
             verifyButton.interactable = true;
         }
@@ -69,7 +91,7 @@ public class VerifyViewModel : ViewModel
 
             if (responseCode == 200 || responseCode == 204)
             {
-
+                codeHandler = codeInput.text;
                 showSuccessAnimation.SetActive(true);
                 showSuccessAnimation.GetComponent<CanvasGroup>().alpha = 0;
                 StartCoroutine(waitforSeconds());
