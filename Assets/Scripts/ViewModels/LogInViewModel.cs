@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEditor.PackageManager;
 public class LogInViewModel : ViewModel
 {
     public TMP_InputField emailInput, passwordInput;
@@ -15,6 +16,15 @@ public class LogInViewModel : ViewModel
     {
 
     }
+
+    void OnDisable()
+    {
+        errorMessage.SetActive(false);
+        emailInput.text = "";
+        passwordInput.text = "";
+        validateEmailMessage.SetActive(false);
+    }
+
 
     public void OnClickShowPassword()
     {
