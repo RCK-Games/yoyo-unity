@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using UnityEditor.PackageManager;
+
 public class LogInViewModel : ViewModel
 {
     public TMP_InputField emailInput, passwordInput;

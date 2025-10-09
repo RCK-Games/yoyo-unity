@@ -53,22 +53,35 @@ public class PlacesViewModel : ViewModel
         }
     }
 
-    public void OnClickReloadPlaces()
+    public void ReloadAll()
+    {
+        ReloadPlaces();
+        ReloadEvents();
+    }
+
+    public void ReloadPlaces()
     {
         foreach (Transform child in placesContainer.transform)
         {
-            GameObject.Destroy(child.gameObject);
+            if (child.name == placeItemPrefab.name + "(Clone)")
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            
         }
         noPlacesText.SetActive(false);
         placesLoadingIcon.SetActive(true);
         GetPlaces();
     }
 
-    public void OnClickReloadEvents()
+    public void ReloadEvents()
     {
         foreach (Transform child in eventsContainer.transform)
         {
-            GameObject.Destroy(child.gameObject);
+            if (child.name == placeItemPrefab.name + "(Clone)")
+            {
+                GameObject.Destroy(child.gameObject);
+            }
         }
         noEventsText.SetActive(false);
         eventsLoadingIcon.SetActive(true);

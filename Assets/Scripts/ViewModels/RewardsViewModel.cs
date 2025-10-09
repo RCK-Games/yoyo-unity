@@ -1,17 +1,21 @@
 using UnityEngine;
 using TMPro;
 using System;
+using DanielLochner.Assets.SimpleScrollSnap;
+using UnityEngine.UI;
 public class RewardsViewModel : ViewModel
 {
     public TextMeshProUGUI pointsText;
 
     public GameObject ItemPrefab, rewardsContainer, noRewardsIcon, rewardsLoadingIcon;
 
-    public GameObject  partnersContainer, noPartnersText, partnersLoadingIcon;
+    public GameObject partnersContainer, noPartnersText, partnersLoadingIcon;
+    public GameObject scrollSnapContainer, ImageGalleryContainer, ImageGalleryItemPrefab, parentContainer;
 
     private bool gettingMoreRewards, gettingMorePartners;
     public Root rewardsResponse;
     public Root partnersResponse;
+    public advertisement ads;
 
     private bool cardValue;
 
@@ -24,13 +28,75 @@ public class RewardsViewModel : ViewModel
         }
         GetRewards();
         GetPartners();
+        GetAds();
+    }
+
+    private void HideAds()
+    {
+
+        Destroy(scrollSnapContainer.GetComponent<SimpleScrollSnap>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(parentContainer.GetComponent<RectTransform>());
+        foreach (Transform child in ImageGalleryContainer.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        scrollSnapContainer.SetActive(false);
+    }
+
+    public void ReloadAll()
+    {
+        OnClickReloadRewards();
+        OnClickReloadPartners();
+        HideAds();
+        GetAds();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(parentContainer.GetComponent<RectTransform>());
+    }
+
+
+    public void GetAds()
+    {
+        scrollSnapContainer.SetActive(true);
+        ApiManager.instance.GetAdvertisements((object[] response) =>
+        {
+            scrollSnapContainer.AddComponent<SimpleScrollSnap>();
+            long responseCode = (long)response[0];
+            string responseText = response[1].ToString();
+            if (responseCode == 200)
+            {
+                advertisement _ads = JsonUtility.FromJson<advertisement>(responseText);
+                ads = _ads;
+                if (ads.results != null && ads.results.Length > 0)
+                {
+                    foreach (var media in ads.results)
+                    {
+                        GameObject imageItem = Instantiate(ImageGalleryItemPrefab, ImageGalleryContainer.transform);
+                        ApiManager.instance.SetImageFromUrl(media.main.absolute_url, (Sprite response) =>
+                        {
+                            imageItem.GetComponent<ImageInterface>().setImage(response);
+                        });
+                    }
+                }
+                else
+                {
+                    HideAds();
+                }
+            }
+            else
+            {
+                HideAds();
+            }
+
+        });
     }
 
     public void OnClickReloadRewards()
     {
         foreach (Transform child in rewardsContainer.transform)
         {
-            GameObject.Destroy(child.gameObject);
+            if (child.name == ItemPrefab.name + "(Clone)")
+            {
+                GameObject.Destroy(child.gameObject);
+            }
         }
         noRewardsIcon.SetActive(false);
         GetRewards();
@@ -40,7 +106,10 @@ public class RewardsViewModel : ViewModel
     {
         foreach (Transform child in partnersContainer.transform)
         {
-            GameObject.Destroy(child.gameObject);
+            if (child.name == ItemPrefab.name + "(Clone)")
+            {
+                GameObject.Destroy(child.gameObject);
+            }
         }
         noPartnersText.SetActive(false);
         GetPartners();
@@ -61,7 +130,7 @@ public class RewardsViewModel : ViewModel
     {
         if (value.x > 1.02f)
         {
-            if(gettingMorePartners) return;
+            if (gettingMorePartners) return;
             GetMorePartners();
         }
     }
@@ -114,7 +183,7 @@ public class RewardsViewModel : ViewModel
             {
                 Debug.LogError($"GetRewards failed: {responseText}");
             }
-            
+
         });
     }
     private void GetRewardsCallback(ResultObject[] results, bool isEvent = false)
@@ -152,7 +221,7 @@ public class RewardsViewModel : ViewModel
             {
                 Debug.LogError($"GetPlaces failed: {responseText}");
             }
-            
+
         });
     }
 

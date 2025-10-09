@@ -20,6 +20,7 @@ public class ApiManager : MonoBehaviour
             return _instance;
         }
     }
+
     public string accessToken = "";
     private User currentUser;
     private static string phoneNumber = "8331021023";
@@ -35,6 +36,7 @@ public class ApiManager : MonoBehaviour
     private static string GET_EVENTS_ENDPOINT = BASE_API_URL + "/events";
     private static string DELETE_USER_ENDPOINT = BASE_API_URL + "/auth";
     private static string UPDATE_USER_ENDPOINT = BASE_API_URL + "/auth/info";
+    private static string GET_ADVERTISEMENTS_ENDPOINT = BASE_API_URL + "/advertisements";
 
     
     public User GetUser()
@@ -125,6 +127,12 @@ public class ApiManager : MonoBehaviour
     public void GetRewards(int limit, int offset, Action<object[]> callback)
     {
         string endpoint = $"{GET_REWARDS_ENDPOINT}/{limit}/{offset}";
+        StartCoroutine(MakeGetRequest(endpoint, callback, accessToken));
+    }
+
+    public void GetAdvertisements(Action<object[]> callback)
+    {
+        string endpoint = $"{GET_ADVERTISEMENTS_ENDPOINT}";
         StartCoroutine(MakeGetRequest(endpoint, callback, accessToken));
     }
 

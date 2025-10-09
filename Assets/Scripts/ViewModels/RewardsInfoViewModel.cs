@@ -72,7 +72,7 @@ public class RewardsInfoViewModel : ViewModel
         descriptionText.text = _reward.description;
         validityText.text = FormatDateRange(_reward.starts_on, _reward.ends_on);
         conditionsText.text = _reward.conditions;
-        costText.text = _reward.cost.ToString();
+        costText.text = _reward.cost.ToString() + " points";
         availableQuantityText.text = _reward.stock.ToString();
         link = _reward.url;
         isFromRewards = _isFromRewards;

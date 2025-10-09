@@ -35,6 +35,8 @@ public class NewScreenManager : Manager
 
     public RectTransform spawnedViewsParent;
 
+    public VideoInterface videoInterface;
+
     private static NewScreenManager _instance;
 
     public static NewScreenManager instance
@@ -80,12 +82,14 @@ public class NewScreenManager : Manager
             currentView = backViewStack.Peek();
             currentView.SetActive(true);
             backViewStack.Pop();
+            VideoInterfaceMatrix();
         }
     }
 
     public void ChangeToMainView(ViewID _viewID, bool _isSubMainView = false)
     {
         SetChangeOfMainViews(_viewID, _isSubMainView);
+        VideoInterfaceMatrix();
     }
 
     public void ChangeToSpawnedView(string _SpawnedViewType)
@@ -105,6 +109,33 @@ public class NewScreenManager : Manager
 
         return null;
     }
+
+    private void VideoInterfaceMatrix()
+    {
+        switch (currentView.viewID)
+        {
+            case ViewID.RewardsViewModel:
+                videoInterface.SetClip(3);
+                break;
+            case ViewID.PlacesViewModel:
+                videoInterface.SetClip(2);
+                break;
+            case ViewID.RegisterViewModel:
+                videoInterface.SetClip(1);
+                break;
+            case ViewID.ProfileViewModel:
+                videoInterface.SetClip(4);
+                break;
+            case ViewID.WelcomeViewModel:
+                videoInterface.SetClip(0);
+                break;
+            default:
+                videoInterface.SetClip(0);
+                break;
+        }
+        videoInterface.videoPlayer.Play();
+    }
+    
 
     public ViewModel GetCurrentView()
     {

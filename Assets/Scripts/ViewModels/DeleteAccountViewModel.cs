@@ -20,10 +20,18 @@ public class DeleteAccountViewModel : ViewModel
         }
     }
 
+    public void OnDisable()
+    {
+        errorText.gameObject.SetActive(false);
+        errorText.text = "";
+        passwordInput.text = "";
+    }
+
     public void OnClickDeleteAccount()
     {
         if (string.IsNullOrEmpty(passwordInput.text))
         {
+            errorText.gameObject.SetActive(true);
             errorText.text = "Please enter your password.";
             return;
         }
@@ -33,6 +41,7 @@ public class DeleteAccountViewModel : ViewModel
             password = passwordInput.text
         };
         NewScreenManager.instance.ShowLoadingScreen(true);
+        errorText.gameObject.SetActive(false);
 
         ApiManager.instance.DeleteUser(deleteRequest, (response) =>
         {
@@ -47,6 +56,7 @@ public class DeleteAccountViewModel : ViewModel
             }
             else
             {
+                errorText.gameObject.SetActive(true);
                 errorText.text = "Incorrect password.";
             }
         });
