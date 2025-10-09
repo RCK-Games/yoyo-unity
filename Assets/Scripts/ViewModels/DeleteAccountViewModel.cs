@@ -49,7 +49,7 @@ public class DeleteAccountViewModel : ViewModel
             string responseText = response[1].ToString();
             NewScreenManager.instance.ShowLoadingScreen(false);
 
-            if (responseCode == 200)
+            if (responseCode == 200 || responseCode == 204)
             {
                 ApiManager.instance.accessToken = "";
                 NewScreenManager.instance.ChangeToMainView(ViewID.WelcomeViewModel, false);
