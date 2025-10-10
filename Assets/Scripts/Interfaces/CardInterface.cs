@@ -23,15 +23,14 @@ public class CardInterface : MonoBehaviour
 
     void OnEnable()
     {
-        User user = ApiManager.instance.GetUser();
-        if (user != null)
+        if(NewScreenManager.instance.GetCurrentView().viewID != ViewID.PlacesViewModel)
         {
-            nameText.text = user.name;
-            idText.text = FormatId(user.id);
-            totalPointsText.text = $"{user.related.total_points} POINTS";
-            pointsText.text = $"{user.related.points} POINTS";
+            return;
         }
 
+        UpdateUsersPoints();
+        
+        
         if (isFullScreen)
         {
             gameObject.transform.DOMove(restPosition.transform.position, 0.5f);
@@ -50,6 +49,18 @@ public class CardInterface : MonoBehaviour
             cardFront.SetActive(true);
             cardBack.SetActive(false);
             cardFront.transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+    }
+
+    public void UpdateUsersPoints()
+    {
+        User user = ApiManager.instance.GetUser();
+        if (user != null)
+        {
+            nameText.text = user.name;
+            idText.text = FormatId(user.id);
+            pointsText.text = $"{user.related.points} POINTS";
+            totalPointsText.text = $"{user.related.total_points} POINTS";
         }
     }
 

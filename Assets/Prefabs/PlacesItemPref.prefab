@@ -231,6 +231,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loader: {fileID: 94693996908162935}
   image: {fileID: 733735840100553204}
+  video: {fileID: 0}
+  rawImage: {fileID: 0}
+  videoObject: {fileID: 0}
 --- !u!114 &1211181854604390955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,10 +401,10 @@ RectTransform:
   - {fileID: 94693996928361943}
   m_Father: {fileID: 6489113810341111881}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7096664152531006605
 CanvasRenderer:

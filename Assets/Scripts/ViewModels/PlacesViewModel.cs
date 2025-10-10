@@ -12,6 +12,8 @@ public class PlacesViewModel : ViewModel
     public PlacesResponse placesResponse;
     public PlacesResponse eventsResponse;
 
+    public CardInterface cardInterface1, cardInterface2;
+
     private bool cardValue;
 
     void Start()
@@ -57,6 +59,9 @@ public class PlacesViewModel : ViewModel
     {
         ReloadPlaces();
         ReloadEvents();
+        ApiManager.instance.UpdateUsersPoints();
+        cardInterface1.UpdateUsersPoints();
+        cardInterface2.UpdateUsersPoints();
     }
 
     public void ReloadPlaces()
@@ -232,5 +237,7 @@ public class PlacesViewModel : ViewModel
     public void OnClickOpenConfig()
     {
         NewScreenManager.instance.ChangeToMainView(ViewID.ConfigViewModel, true);
+        NewScreenManager.instance.GetCurrentView().GetComponent<ConfigViewModel>().enableWithPlaces();
+
     }
 }

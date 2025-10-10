@@ -70,7 +70,7 @@ public class EditTastesViewModel : ViewModel
         foodInputText.text = "";
         musicInputText.text = "";
         currentUser = null;
-        
+
     }
 
 
@@ -84,13 +84,25 @@ public class EditTastesViewModel : ViewModel
         {
             clearDrinkButton.SetActive(true);
         }
+        else
+        {
+            clearDrinkButton.SetActive(false);
+        }
         if (foodInputText.text.Length > 0)
         {
             clearFoodButton.SetActive(true);
         }
+        else
+        {
+            clearFoodButton.SetActive(false);
+        }
         if (musicInputText.text.Length > 0)
         {
             clearMUsicButton.SetActive(true);
+        }
+        else
+        {
+            clearMUsicButton.SetActive(false);
         }
     }
     public void SaveNewTastes()

@@ -8,10 +8,10 @@ public class ReloadInterface : MonoBehaviour
     private const float BASE_BOTTOM = 0f;
 
     [Header("Labels")]
-    private string topPullLabel = "BAJA MÁS PARA ACTUALIZAR...";
-    private string topReleaseLabel = "SUELTA PARA ACTUALIZAR LA LISTA...";
-    private string bottomPullLabel = "SUBE MáS PARA ACTUALIZAR...";
-    private string bottomReleaseLabel = "SUELTA PARA ACTUALIZAR...";
+    private string topPullLabel = "SCROLL DOWN FOR UPDATE...";
+    private string topReleaseLabel = "RELEASE TO UPDATE LIST...";
+    private string bottomPullLabel = "SCROLL UP FOR UPDATE...";
+    private string bottomReleaseLabel = "RELEASE TO UPDATE LIST...";
 
     private bool _canLoad = false;
     private bool _isLoading = false;

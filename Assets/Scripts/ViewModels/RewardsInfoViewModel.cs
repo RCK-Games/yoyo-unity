@@ -14,6 +14,7 @@ public class RewardsInfoViewModel : ViewModel
     public string link;
 
     private bool isFromRewards = false;
+    public ScrollRect scrollRect;
 
     public Button redeemButton;
 
@@ -37,6 +38,7 @@ public class RewardsInfoViewModel : ViewModel
         }
         redeemButton.interactable = true;
         noPointsText.SetActive(false);
+        scrollRect.verticalNormalizedPosition = 1;
     }
 
     public string FormatDateRange(string start, string end)
@@ -112,16 +114,19 @@ public class RewardsInfoViewModel : ViewModel
 
         }
 
-        if(ApiManager.instance.GetUsersPoints() < _reward.cost && _reward.stock < 1)
-        {
-            redeemButton.interactable = false;
-            noPointsText.SetActive(true);
-        }
-        else
+        if(ApiManager.instance.GetUsersPoints() >= _reward.cost && _reward.stock > 0)
         {
             redeemButton.interactable = true;
             noPointsText.SetActive(false);
         }
+        else
+        {
+            redeemButton.interactable = false;
+            noPointsText.SetActive(true);
+        }
+
+        
+
         LayoutRebuilder.ForceRebuildLayoutImmediate(tagContainer.GetComponent<RectTransform>());
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentRebuild);
         StartCoroutine(WaitAFrame());

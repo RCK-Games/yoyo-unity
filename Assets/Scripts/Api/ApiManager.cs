@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine.Networking;
+using UnityEngine.Video;
 
 
 public class ApiManager : MonoBehaviour
@@ -37,6 +38,7 @@ public class ApiManager : MonoBehaviour
     private static string DELETE_USER_ENDPOINT = BASE_API_URL + "/auth";
     private static string UPDATE_USER_ENDPOINT = BASE_API_URL + "/auth/info";
     private static string GET_ADVERTISEMENTS_ENDPOINT = BASE_API_URL + "/advertisements";
+    private static string UPDATE_POINTS_ENDPOINT = BASE_API_URL + "/points";
 
     
     public User GetUser()
@@ -96,6 +98,25 @@ public class ApiManager : MonoBehaviour
     public int GetUsersPoints()
     {
         return currentUser.related.points;
+    }
+
+    public void UpdateUsersPoints()
+    {
+        return;
+        /*
+        StartCoroutine(MakeGetRequest(UPDATE_POINTS_ENDPOINT, (response) =>
+        {
+            long responseCode = (long)response[0];
+            string responseText = response[1].ToString();
+
+            if (responseCode == 200)
+            {
+                PointsResult pointsResponse = JsonUtility.FromJson<PointsResult>(responseText);
+                currentUser.related.points = pointsResponse.points;
+                currentUser.related.total_points = pointsResponse.total_points;
+            }
+        }, accessToken));
+        */
     }
     
 
@@ -197,13 +218,12 @@ public class ApiManager : MonoBehaviour
         string jsonData = JsonUtility.ToJson(updateData);
         StartCoroutine(MakePutRequest(UPDATE_USER_ENDPOINT, jsonData, callback, token));
     }
-    
+
     public void SetImageFromUrl(string url, Action<Sprite> callback)
     {
         StartCoroutine(LoadSpriteFromUrl(url, callback));
     }
-
-
+    
     #region Private Helper Methods
 
     private IEnumerator LoadSpriteFromUrl(string url, Action<Sprite> callback)

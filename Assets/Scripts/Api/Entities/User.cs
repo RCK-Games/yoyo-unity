@@ -60,6 +60,13 @@ public class ResetPasswordRequest
 }
 
 [Serializable]
+public class PointsResult
+{
+    public int points;
+    public int total_points;
+}
+
+[Serializable]
 public class UpdateUserRequest
 {
     public string id;

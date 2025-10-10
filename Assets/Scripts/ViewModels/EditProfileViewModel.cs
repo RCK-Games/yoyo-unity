@@ -18,7 +18,7 @@ public class EditProfileViewModel : ViewModel
         if (currentUser.related.phone.Length > 0)
         {
             phoneInputText.text = currentUser.related.phone.Split(' ')[1];
-            phoneSelectorHandler.SearchSpecificCountry(currentUser.related.phone.Split(' ')[0].Replace("(", "").Replace(")", "").Replace("+", ""));
+            phoneSelectorHandler.searchText = currentUser.related.phone.Split(' ')[0].Replace("(", "").Replace(")", "");
         }
     }
 

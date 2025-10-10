@@ -3,6 +3,7 @@ using TMPro;
 using System;
 using DanielLochner.Assets.SimpleScrollSnap;
 using UnityEngine.UI;
+using System.Collections;
 public class RewardsViewModel : ViewModel
 {
     public TextMeshProUGUI pointsText;
@@ -10,7 +11,7 @@ public class RewardsViewModel : ViewModel
     public GameObject ItemPrefab, rewardsContainer, noRewardsIcon, rewardsLoadingIcon;
 
     public GameObject partnersContainer, noPartnersText, partnersLoadingIcon;
-    public GameObject scrollSnapContainer, ImageGalleryContainer, ImageGalleryItemPrefab, parentContainer;
+    public GameObject scrollSnapContainer, ImageGalleryContainer, ImageGalleryItemPrefab, parentContainer, pointsContainer;
 
     private bool gettingMoreRewards, gettingMorePartners;
     public Root rewardsResponse;
@@ -21,26 +22,46 @@ public class RewardsViewModel : ViewModel
 
     void Start()
     {
+        GetRewards();
+        GetPartners();
+        GetAds();
+    }
+
+    void OnEnable()
+    {
         User user = ApiManager.instance.GetUser();
         if (user != null)
         {
             pointsText.text = $"Available Points: {user.related.points}";
         }
-        GetRewards();
-        GetPartners();
-        GetAds();
+        StartCoroutine(WaitAFrame());
+    }
+
+    public void OnClickOpenConfig()
+    {
+        NewScreenManager.instance.ChangeToMainView(ViewID.ConfigViewModel, true);
+        NewScreenManager.instance.GetCurrentView().GetComponent<ConfigViewModel>().enableWithRewards();
+
     }
 
     private void HideAds()
     {
 
         Destroy(scrollSnapContainer.GetComponent<SimpleScrollSnap>());
-        LayoutRebuilder.ForceRebuildLayoutImmediate(parentContainer.GetComponent<RectTransform>());
+        StartCoroutine(WaitAFrame());
         foreach (Transform child in ImageGalleryContainer.transform)
         {
             GameObject.Destroy(child.gameObject);
         }
         scrollSnapContainer.SetActive(false);
+    }
+
+    IEnumerator WaitAFrame()
+    {
+        yield return null;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(parentContainer.GetComponent<RectTransform>());
+        yield return null;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(pointsContainer.GetComponent<RectTransform>());
     }
 
     public void ReloadAll()
@@ -49,7 +70,13 @@ public class RewardsViewModel : ViewModel
         OnClickReloadPartners();
         HideAds();
         GetAds();
-        LayoutRebuilder.ForceRebuildLayoutImmediate(parentContainer.GetComponent<RectTransform>());
+        ApiManager.instance.UpdateUsersPoints();
+        User user = ApiManager.instance.GetUser();
+        if (user != null)
+        {
+            pointsText.text = $"Available Points: {user.related.points}";
+        }
+        StartCoroutine(WaitAFrame());
     }
 
 
@@ -70,10 +97,18 @@ public class RewardsViewModel : ViewModel
                     foreach (var media in ads.results)
                     {
                         GameObject imageItem = Instantiate(ImageGalleryItemPrefab, ImageGalleryContainer.transform);
-                        ApiManager.instance.SetImageFromUrl(media.main.absolute_url, (Sprite response) =>
+                        if (media.main.type.ToLower() == "video")
                         {
-                            imageItem.GetComponent<ImageInterface>().setImage(response);
-                        });
+                            imageItem.GetComponent<ImageInterface>().setVideo(media.main.absolute_url);
+
+                        }
+                        else
+                        {
+                            ApiManager.instance.SetImageFromUrl(media.main.absolute_url, (Sprite response) =>
+                            {
+                                imageItem.GetComponent<ImageInterface>().setImage(response);
+                            });
+                        }
                     }
                 }
                 else
@@ -276,9 +311,5 @@ public class RewardsViewModel : ViewModel
     void Update()
     {
 
-    }
-    public void OnClickOpenConfig()
-    {
-        NewScreenManager.instance.ChangeToMainView(ViewID.ConfigViewModel, true);
     }
 }

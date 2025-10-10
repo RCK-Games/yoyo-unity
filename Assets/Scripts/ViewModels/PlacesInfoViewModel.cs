@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using DanielLochner.Assets.SimpleScrollSnap;
 using System.Collections;
+using UnityEngine.Video;
 public class PlacesInfoViewModel : ViewModel
 {
     public TextMeshProUGUI titleText, descriptionText, musicLineUpText, locationText;
@@ -19,6 +20,7 @@ public class PlacesInfoViewModel : ViewModel
     public List<GameObject> dressCodeOptions = new List<GameObject>();
 
     private bool isFromPlace = false;
+    public ScrollRect scrollRect;
     private string eventLink = "";
     private string googleMapsLink = "";
 
@@ -79,6 +81,7 @@ public class PlacesInfoViewModel : ViewModel
         isFromPlace = false;
         eventLink = "";
         googleMapsLink = "";
+        scrollRect.verticalNormalizedPosition = 1;
     }
 
     public void OnClickReserve()
@@ -115,6 +118,7 @@ public class PlacesInfoViewModel : ViewModel
 
     public void InitializeViewModel(Place _place, bool _isFromPlace = false)
     {
+
         isFromPlace = _isFromPlace;
         titleText.text = _place.name;
         descriptionText.text = _place.description;
@@ -147,11 +151,19 @@ public class PlacesInfoViewModel : ViewModel
             foreach (var media in _place.gallery)
             {
                 GameObject imageItem = Instantiate(ImageGalleryItemPrefab, ImageGalleryContainer.transform);
-                
-                ApiManager.instance.SetImageFromUrl(media.absolute_url, (Sprite response) =>
+
+                if( media.type.ToLower() == "video")
                 {
-                    imageItem.GetComponent<ImageInterface>().setImage(response);
-                });
+                    imageItem.GetComponent<ImageInterface>().setVideo(media.absolute_url);
+
+                }
+                else
+                {
+                    ApiManager.instance.SetImageFromUrl(media.absolute_url, (Sprite response) =>
+                    {
+                        imageItem.GetComponent<ImageInterface>().setImage(response);
+                    });
+                }
             }
         }
         else
