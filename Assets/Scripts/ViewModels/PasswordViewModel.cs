@@ -1,10 +1,13 @@
 using UnityEngine;
 using TMPro;
 using System.Text.RegularExpressions;
+using UnityEngine.UI;
 public class PasswordViewModel : ViewModel
 {
     public TMP_InputField emailInput;
     public GameObject popUpSendMessage;
+
+    public Button sendButton;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,6 +24,11 @@ public class PasswordViewModel : ViewModel
     {
         emailInput.text = "";
         popUpSendMessage.SetActive(false);
+    }
+
+    public void OnChangeInput()
+    {
+        sendButton.interactable = IsValidEmail(emailInput.text);
     }
 
     private bool IsValidEmail(string email)

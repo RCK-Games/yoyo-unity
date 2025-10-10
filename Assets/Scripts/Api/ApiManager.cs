@@ -92,6 +92,11 @@ public class ApiManager : MonoBehaviour
         string jsonData = JsonUtility.ToJson(signInData);
         StartCoroutine(MakePostRequest(SIGNIN_ENDPOINT, jsonData, callback, false));
     }
+
+    public int GetUsersPoints()
+    {
+        return currentUser.related.points;
+    }
     
 
     public void LogIn(LoginRequest loginData, Action<object[]> callback)

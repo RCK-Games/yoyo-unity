@@ -17,10 +17,18 @@ public class EditProfileViewModel : ViewModel
 
         if (currentUser.related.phone.Length > 0)
         {
-            Debug.Log(currentUser.related.phone.Split(' '));
             phoneInputText.text = currentUser.related.phone.Split(' ')[1];
             phoneSelectorHandler.SearchSpecificCountry(currentUser.related.phone.Split(' ')[0].Replace("(", "").Replace(")", "").Replace("+", ""));
         }
+    }
+
+    void OnDisable()
+    {
+        nameInputText.text = "";
+        phoneInputText.text = "";
+        clearNameButton.SetActive(true);
+        clearPhoneButton.SetActive(true);
+        SaveButton.interactable = true;
     }
 
     public void ClearNameInput()

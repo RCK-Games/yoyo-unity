@@ -5,8 +5,6 @@ public class EditTastesViewModel : ViewModel
 
     public TMP_InputField drinkInputText, foodInputText, musicInputText;
     private User currentUser;
-    public TextMeshProUGUI drinkPlaceHolder, foodPlaceHolder, musicPlaceHolder;
-
     public GameObject clearMUsicButton, clearFoodButton, clearDrinkButton;
 
     public void ClearDrinkInput()
@@ -63,13 +61,25 @@ public class EditTastesViewModel : ViewModel
         }
     }
 
+    void OnDisable()
+    {
+        clearDrinkButton.SetActive(false);
+        clearFoodButton.SetActive(false);
+        clearMUsicButton.SetActive(false);
+        drinkInputText.text = "";
+        foodInputText.text = "";
+        musicInputText.text = "";
+        currentUser = null;
+        
+    }
+
 
     public void OnSetup(User _currentUser)
     {
         currentUser = _currentUser;
-        drinkPlaceHolder.text = currentUser.related.taste_drink;
-        foodPlaceHolder.text = currentUser.related.taste_food;
-        musicPlaceHolder.text = currentUser.related.taste_music;
+        drinkInputText.text = currentUser.related.taste_drink;
+        foodInputText.text = currentUser.related.taste_food;
+        musicInputText.text = currentUser.related.taste_music;
         if (drinkInputText.text.Length > 0)
         {
             clearDrinkButton.SetActive(true);
@@ -85,30 +95,9 @@ public class EditTastesViewModel : ViewModel
     }
     public void SaveNewTastes()
     {
-        if (drinkInputText.text == "")
-        {
-            currentUser.related.taste_drink = drinkPlaceHolder.text;
-        }
-        else
-        {
-            currentUser.related.taste_drink = drinkInputText.text;
-        }
-        if( foodInputText.text == "")
-        {
-            currentUser.related.taste_food = foodPlaceHolder.text;
-        }
-        else
-        {
-            currentUser.related.taste_food = foodInputText.text;
-        }
-        if (musicInputText.text == "")
-        {
-            currentUser.related.taste_music = musicPlaceHolder.text;
-        }
-        else
-        {
-            currentUser.related.taste_music = musicInputText.text;
-        }
+        currentUser.related.taste_drink = drinkInputText.text;
+        currentUser.related.taste_food = foodInputText.text;
+        currentUser.related.taste_music = musicInputText.text;
         ApiManager.instance.SetUser(currentUser);
         NewScreenManager.instance.BackToPreviousView();
         NewScreenManager.instance.GetCurrentView().GetComponent<ProfileViewModel>().SetInfo();

@@ -9,11 +9,13 @@ public class RewardsInfoViewModel : ViewModel
 {
     public TextMeshProUGUI titleText, descriptionText, validityText, conditionsText, costText, availableQuantityText;
     public RectTransform contentRebuild;
-    public GameObject scrollSnapContainer, ImageGalleryContainer, ImageGalleryItemPrefab, tagContainer;
+    public GameObject scrollSnapContainer, ImageGalleryContainer, ImageGalleryItemPrefab, tagContainer, noPointsText;
 
     public string link;
 
     private bool isFromRewards = false;
+
+    public Button redeemButton;
 
     /// <summary>
     /// Resets the view model when disabled to avoid data leakage between different places.
@@ -33,6 +35,8 @@ public class RewardsInfoViewModel : ViewModel
         {
             GameObject.Destroy(child.gameObject);
         }
+        redeemButton.interactable = true;
+        noPointsText.SetActive(false);
     }
 
     public string FormatDateRange(string start, string end)
@@ -106,6 +110,17 @@ public class RewardsInfoViewModel : ViewModel
             }
 
 
+        }
+
+        if(ApiManager.instance.GetUsersPoints() < _reward.cost && _reward.stock < 1)
+        {
+            redeemButton.interactable = false;
+            noPointsText.SetActive(true);
+        }
+        else
+        {
+            redeemButton.interactable = true;
+            noPointsText.SetActive(false);
         }
         LayoutRebuilder.ForceRebuildLayoutImmediate(tagContainer.GetComponent<RectTransform>());
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentRebuild);
