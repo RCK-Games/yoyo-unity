@@ -9,8 +9,9 @@ public class RewardsInfoViewModel : ViewModel
 {
     public TextMeshProUGUI titleText, descriptionText, validityText, conditionsText, costText, availableQuantityText;
     public RectTransform contentRebuild;
-    public GameObject scrollSnapContainer, ImageGalleryContainer, ImageGalleryItemPrefab, tagContainer, noPointsText;
+    public GameObject scrollSnapContainer, ImageGalleryContainer, ImageGalleryItemPrefab, tagContainer;
 
+    public TextMeshProUGUI noPointsText;
     public string link;
 
     private bool isFromRewards = false;
@@ -37,7 +38,7 @@ public class RewardsInfoViewModel : ViewModel
             GameObject.Destroy(child.gameObject);
         }
         redeemButton.interactable = true;
-        noPointsText.SetActive(false);
+        noPointsText.gameObject.SetActive(false);
         scrollRect.verticalNormalizedPosition = 1;
     }
 
@@ -58,7 +59,7 @@ public class RewardsInfoViewModel : ViewModel
     public void OnClickRedeem()
     {
 
-        if(isFromRewards)
+        if (isFromRewards)
         {
             ApiManager.instance.GenerateWhatsAppMessage("I would like to redeem this reward: " + titleText.text + " This is my userID: " + ApiManager.instance.GetUserId());
         }
@@ -114,22 +115,59 @@ public class RewardsInfoViewModel : ViewModel
 
         }
 
-        if(ApiManager.instance.GetUsersPoints() >= _reward.cost && _reward.stock > 0)
-        {
-            redeemButton.interactable = true;
-            noPointsText.SetActive(false);
-        }
-        else
-        {
-            redeemButton.interactable = false;
-            noPointsText.SetActive(true);
-        }
-
-        
+        isRewardAvailable(_reward, isFromRewards);
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(tagContainer.GetComponent<RectTransform>());
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentRebuild);
         StartCoroutine(WaitAFrame());
+    }
+
+    private void isRewardAvailable(ResultObject _reward, bool isFromRewards)
+    {
+        bool flag = true;
+        if (ApiManager.instance.GetUsersPoints() >= _reward.cost)
+        {
+            redeemButton.interactable = false;
+            noPointsText.gameObject.SetActive(true);
+            if(isFromRewards)
+                noPointsText.text = "You don't have enough points to redeem this reward.";
+            else
+                noPointsText.text = "You don't have enough points to find this partner.";
+            flag = false;
+        }
+
+        if (_reward.stock <= 0)
+        {
+            redeemButton.interactable = false;
+            noPointsText.gameObject.SetActive(true);
+            if(isFromRewards)
+                noPointsText.text = "This reward is out of stock.";
+            else
+                noPointsText.text = "This partner is not available.";
+            flag = false;
+        }
+
+        if (System.DateTime.TryParse(_reward.starts_on, out var startDate) &&
+            System.DateTime.TryParse(_reward.ends_on, out var endDate))
+        {
+            var now = System.DateTime.Now;
+            if (now < startDate || now > endDate)
+            {
+                redeemButton.interactable = false;
+                noPointsText.gameObject.SetActive(true);
+                if(isFromRewards)
+                    noPointsText.text = "This reward is not available at this time.";
+                else
+                    noPointsText.text = "This partner is not available at this time.";
+                flag = false;
+            }
+        }
+        if (flag)
+        {
+            redeemButton.interactable = true;
+            noPointsText.gameObject.SetActive(false);
+        }
+
     }
 
     IEnumerator WaitAFrame()
