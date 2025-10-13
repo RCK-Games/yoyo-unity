@@ -10,15 +10,20 @@ public class ConfigViewModel : ViewModel
 
     void OnEnable()
     {
-        if(type == "places")
+        if (type == "places")
         {
             enableWithPlaces();
         }
-        else if(type == "rewards")
+        else if (type == "rewards")
         {
             enableWithRewards();
         }
         type = "";
+    }
+
+    void Start()
+    {
+
     }
 
 

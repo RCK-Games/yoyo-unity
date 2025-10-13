@@ -125,7 +125,7 @@ public class RewardsInfoViewModel : ViewModel
     private void isRewardAvailable(ResultObject _reward, bool isFromRewards)
     {
         bool flag = true;
-        if (ApiManager.instance.GetUsersPoints() >= _reward.cost)
+        if (ApiManager.instance.GetUsersPoints() < _reward.cost)
         {
             redeemButton.interactable = false;
             noPointsText.gameObject.SetActive(true);

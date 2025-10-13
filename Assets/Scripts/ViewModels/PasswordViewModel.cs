@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PasswordViewModel : ViewModel
 {
     public TMP_InputField emailInput;
-    public GameObject popUpSendMessage;
+    public GameObject popUpSendMessage, invalidEmailText;
 
     public Button sendButton;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,12 +29,20 @@ public class PasswordViewModel : ViewModel
     public void OnChangeInput()
     {
         sendButton.interactable = IsValidEmail(emailInput.text);
+        invalidEmailText.SetActive(!IsValidEmail(emailInput.text));
+        if(emailInput.text == "")
+        {
+            invalidEmailText.SetActive(false);
+        }
     }
 
     private bool IsValidEmail(string email)
     {
         if (string.IsNullOrWhiteSpace(email))
+        {
             return false;
+        }
+            
         string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
         return Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase);
     }
@@ -43,12 +51,15 @@ public class PasswordViewModel : ViewModel
     {
         if (string.IsNullOrEmpty(emailInput.text))
         {
+            invalidEmailText.SetActive(true);
             return;
         }
         if (!IsValidEmail(emailInput.text))
         {
+            invalidEmailText.SetActive(true);
             return;
         }
+        invalidEmailText.SetActive(false);
         ResetPasswordRequest resetData = new ResetPasswordRequest
         {
             email = emailInput.text
