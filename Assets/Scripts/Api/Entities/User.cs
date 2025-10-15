@@ -29,6 +29,8 @@ public class related
     public string taste_drink;
     public string taste_music;
     public string taste_food;
+    public Gallery image;
+    public Medium media;
     
 }
 
@@ -57,6 +59,12 @@ public class LoginRequest
 public class ResetPasswordRequest
 {
     public string email;
+}
+
+[Serializable]
+public class UploadImageRequest
+{
+    public string image; // Base64 encoded image string
 }
 
 [Serializable]

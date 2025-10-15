@@ -17,6 +17,7 @@ public class Result
 {
     public int id;
     public int order;
+    public string url;
     public DateTime created_at;
     public DateTime updated_at;
     public Main main;

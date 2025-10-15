@@ -59,9 +59,13 @@ public class PlacesViewModel : ViewModel
     {
         ReloadPlaces();
         ReloadEvents();
-        ApiManager.instance.UpdateUsersPoints();
-        cardInterface1.UpdateUsersPoints();
-        cardInterface2.UpdateUsersPoints();
+        ApiManager.instance.UpdateUsersPoints((object[] response) =>
+        {
+
+            cardInterface1.UpdateUsersPoints();
+            cardInterface2.UpdateUsersPoints();
+            
+        });
     }
 
     public void ReloadPlaces()
@@ -112,6 +116,7 @@ public class PlacesViewModel : ViewModel
                     placesResponse.prev = morePlaces.prev;
                     placesResponse.results.AddRange(morePlaces.results);
                     GetPlacesCallback(morePlaces.results.ToArray());
+                    placesLoadingIcon.SetActive(false);
                 }
                 else
                 {
@@ -148,6 +153,7 @@ public class PlacesViewModel : ViewModel
         if (placesResponse.total == 0)
         {
             noPlacesText.SetActive(true);
+            placesLoadingIcon.SetActive(false);
             return;
         }
 
@@ -187,6 +193,7 @@ public class PlacesViewModel : ViewModel
         if (eventsResponse.total == 0)
         {
             noEventsText.SetActive(true);
+            eventsLoadingIcon.SetActive(false);
             return;
         }
 

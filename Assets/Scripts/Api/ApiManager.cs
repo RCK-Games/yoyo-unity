@@ -38,7 +38,8 @@ public class ApiManager : MonoBehaviour
     private static string DELETE_USER_ENDPOINT = BASE_API_URL + "/auth";
     private static string UPDATE_USER_ENDPOINT = BASE_API_URL + "/auth/info";
     private static string GET_ADVERTISEMENTS_ENDPOINT = BASE_API_URL + "/advertisements";
-    private static string UPDATE_POINTS_ENDPOINT = BASE_API_URL + "/points";
+    private static string UPDATE_POINTS_ENDPOINT = BASE_API_URL + "/auth/points";
+    private static string UPLOAD_IMAGE_ENDPOINT = BASE_API_URL + "/auth/image";
 
     
     public User GetUser()
@@ -100,10 +101,8 @@ public class ApiManager : MonoBehaviour
         return currentUser.related.points;
     }
 
-    public void UpdateUsersPoints()
+    public void UpdateUsersPoints(Action<object[]> callback)
     {
-        return;
-        /*
         StartCoroutine(MakeGetRequest(UPDATE_POINTS_ENDPOINT, (response) =>
         {
             long responseCode = (long)response[0];
@@ -115,8 +114,9 @@ public class ApiManager : MonoBehaviour
                 currentUser.related.points = pointsResponse.points;
                 currentUser.related.total_points = pointsResponse.total_points;
             }
+            callback(response);
         }, accessToken));
-        */
+
     }
     
 
@@ -142,6 +142,12 @@ public class ApiManager : MonoBehaviour
     {
         string jsonData = JsonUtility.ToJson(resetData);
         StartCoroutine(MakePostRequest(RESET_PASSWORD_ENDPOINT, jsonData, callback, false));
+    }
+
+    public void UpdateUsersImage(UploadImageRequest uploadData, Action<object[]> callback)
+    {
+        string jsonData = JsonUtility.ToJson(uploadData);
+        StartCoroutine(MakePostRequest(UPLOAD_IMAGE_ENDPOINT, jsonData, callback, true, accessToken));
     }
 
     public void CheckAccessCode(CheckAccessCodeRequest accessCodeData, Action<object[]> callback)

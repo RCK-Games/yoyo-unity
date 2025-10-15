@@ -1,12 +1,14 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEditor;
 public class ProfileViewModel : ViewModel
 {
     public User currentUser;
-    public TextMeshProUGUI titleNameValueText, nameValueText, phoneValueText, emailValueText, idValueText, drinkValueText, foodValueText, musicValueText, pointsValueText;
-
+    public TextMeshProUGUI nameValueText, phoneValueText, emailValueText, idValueText, drinkValueText, foodValueText, musicValueText, pointsValueText;
+    public GameObject profileDefault, deleteButton;
     public Image avatarImage;
+
     void OnEnable()
     {
         SetInfo();
@@ -25,37 +27,151 @@ public class ProfileViewModel : ViewModel
             foodValueText.text = currentUser.related.taste_food;
             musicValueText.text = currentUser.related.taste_music;
             pointsValueText.text = currentUser.related.points.ToString() + " points";
+            if (currentUser.related.image != null)
+            {
+                if (currentUser.related.image.absolute_url != null && currentUser.related.image.absolute_url != "")
+                {
+                    avatarImage.gameObject.SetActive(true);
+                    profileDefault.SetActive(false);
+                    deleteButton.SetActive(true);
+                    ApiManager.instance.SetImageFromUrl(currentUser.related.image.absolute_url, (Sprite response) =>
+                    {
+                        avatarImage.sprite = response;
+                    });
+                }else
+                {
+                    deleteButton.SetActive(false);
+                    profileDefault.SetActive(true);
+                    avatarImage.gameObject.SetActive(false);
+                }
+
+            }
+            else
+            {
+                deleteButton.SetActive(false);
+                profileDefault.SetActive(true);
+                avatarImage.gameObject.SetActive(false);
+            }
         }
     }
 
+    public void deleteAvatar()
+    {
+        UploadImageRequest uploadData = new UploadImageRequest();
+        uploadData.image = "";
+        ApiManager.instance.UpdateUsersImage(uploadData, (object[] response) =>
+            {
+                long responseCode = (long)response[0];
+                string responseText = response[1].ToString();
+                if (responseCode == 200)
+                {
+                    avatarImage.gameObject.SetActive(false);
+                    profileDefault.SetActive(true);
+                    deleteButton.SetActive(false);
+                }
+                NewScreenManager.instance.ShowLoadingScreen(false);
+            });
+    }
+    
+
     public void ShowMediaPicker()
     {
-
         NativeGallery.GetImageFromGallery((path) =>
         {
             if (path != null)
             {
-                NewScreenManager.instance.ShowLoadingScreen(true);
-                Texture2D texture = NativeGallery.LoadImageAtPath(path, 512);
+                // Create Texture from selected image
+
+                Texture2D texture = NativeGallery.LoadImageAtPath(path, 1000);
+                texture = MakeTextureReadable(texture);
                 if (texture == null)
                 {
                     Debug.Log("Couldn't load texture from " + path);
                     return;
                 }
-                byte[] imageBytes = texture.EncodeToJPG();
-                string base64Image = System.Convert.ToBase64String(imageBytes);
 
-                currentUser.avatar = base64Image;
-                avatarImage.gameObject.SetActive(true);
                 avatarImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+                string base64Image = System.Convert.ToBase64String(SpriteToByteArray(avatarImage.sprite));
+                UploadImageRequest uploadData = new UploadImageRequest();
+                uploadData.image = "data:image/png;base64," + base64Image;
+                ApiManager.instance.UpdateUsersImage(uploadData, (object[] response) =>
+                    {
+                        long responseCode = (long)response[0];
+                        string responseText = response[1].ToString();
+                        if (responseCode == 200)
+                        {
+                            avatarImage.gameObject.SetActive(true);
+                            profileDefault.SetActive(false); 
+                            deleteButton.SetActive(true);  
+                        }
+                        else
+                        {
+                            profileDefault.SetActive(true);
+                            deleteButton.SetActive(false);
+                            avatarImage.gameObject.SetActive(false);
+                        }
+                        NewScreenManager.instance.ShowLoadingScreen(false);
+                    });
 
-                //ApiManager.instance.SetUser(currentUser);
-                NewScreenManager.instance.ShowLoadingScreen(false);
+                
+            }
+        } , "Select a picture", "image/*");
+    }
+    
+    private static Texture2D MakeTextureReadable(Texture2D texture)
+    {
+        RenderTexture tmp = RenderTexture.GetTemporary(
+            texture.width,
+            texture.height,
+            0,
+            RenderTextureFormat.Default,
+            RenderTextureReadWrite.Linear
+        );
 
-             }
-        }, "Select a picture", "image/*");
+        Graphics.Blit(texture, tmp);
+        RenderTexture previous = RenderTexture.active;
+        RenderTexture.active = tmp;
 
+        Texture2D readableTex = new Texture2D(texture.width, texture.height);
+        readableTex.ReadPixels(new Rect(0, 0, tmp.width, tmp.height), 0, 0);
+        readableTex.Apply();
 
+        RenderTexture.active = previous;
+        RenderTexture.ReleaseTemporary(tmp);
+
+        return readableTex;
+    }
+
+    private static byte[] SpriteToByteArray(Sprite sprite)
+    {
+        if (sprite == null)
+        {
+            Debug.LogError("Sprite nulo");
+            return null;
+        }
+        Texture2D texture = sprite.texture;
+
+        Texture2D croppedTexture = new Texture2D(
+            (int)sprite.rect.width,
+            (int)sprite.rect.height,
+            TextureFormat.RGBA32,
+            false
+        );
+
+        Color[] pixels = texture.GetPixels(
+            (int)sprite.rect.x,
+            (int)sprite.rect.y,
+            (int)sprite.rect.width,
+            (int)sprite.rect.height
+        );
+        croppedTexture.SetPixels(pixels);
+        croppedTexture.Apply();
+
+        byte[] bytes = croppedTexture.EncodeToPNG();
+
+        Object.Destroy(croppedTexture);
+
+        return bytes;
     }
 
     public void OnClickDeleteAccount()

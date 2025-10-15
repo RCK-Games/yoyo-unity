@@ -9,7 +9,8 @@ public class RewardsInfoViewModel : ViewModel
 {
     public TextMeshProUGUI titleText, descriptionText, validityText, conditionsText, costText, availableQuantityText;
     public RectTransform contentRebuild;
-    public GameObject scrollSnapContainer, ImageGalleryContainer, ImageGalleryItemPrefab, tagContainer;
+    public GameObject scrollSnapContainer, ImageGalleryContainer, ImageGalleryItemPrefab, tagContainer, togglePrefab;
+    public ToggleGroup paginationToggleGroup;
 
     public TextMeshProUGUI noPointsText;
     public string link;
@@ -40,6 +41,10 @@ public class RewardsInfoViewModel : ViewModel
         redeemButton.interactable = true;
         noPointsText.gameObject.SetActive(false);
         scrollRect.verticalNormalizedPosition = 1;
+        foreach (Transform child in paginationToggleGroup.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
     }
 
     public string FormatDateRange(string start, string end)
@@ -84,17 +89,34 @@ public class RewardsInfoViewModel : ViewModel
         link = _reward.url;
         isFromRewards = _isFromRewards;
 
-        scrollSnapContainer.AddComponent<SimpleScrollSnap>();
-
+        SimpleScrollSnap scrollSnap = scrollSnapContainer.AddComponent<SimpleScrollSnap>();
+        if(_reward.gallery != null && _reward.gallery.Length > 1)
+        {
+            scrollSnap.Pagination = paginationToggleGroup;
+            scrollSnap.ToggleNavigation = true;
+        }
         if (_reward.gallery != null && _reward.gallery.Length > 0)
         {
             foreach (var media in _reward.gallery)
             {
                 GameObject imageItem = Instantiate(ImageGalleryItemPrefab, ImageGalleryContainer.transform);
-                ApiManager.instance.SetImageFromUrl(media.absolute_url, (Sprite response) =>
+                if(_reward.gallery.Length > 1)
                 {
-                    imageItem.GetComponent<ImageInterface>().setImage(response);
-                });
+                    GameObject toggleItem = Instantiate(togglePrefab, paginationToggleGroup.transform);
+                    toggleItem.GetComponent<Toggle>().group = paginationToggleGroup;
+                }
+                if( media.type.ToLower() == "video")
+                {
+                    imageItem.GetComponent<ImageInterface>().setVideo(media.absolute_url);
+
+                }
+                else
+                {
+                    ApiManager.instance.SetImageFromUrl(media.absolute_url, (Sprite response) =>
+                    {
+                        imageItem.GetComponent<ImageInterface>().setImage(response);
+                    });
+                }
             }
         }
         else

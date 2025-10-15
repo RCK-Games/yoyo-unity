@@ -11,7 +11,8 @@ public class RewardsViewModel : ViewModel
     public GameObject ItemPrefab, rewardsContainer, noRewardsIcon, rewardsLoadingIcon;
 
     public GameObject partnersContainer, noPartnersText, partnersLoadingIcon;
-    public GameObject scrollSnapContainer, ImageGalleryContainer, ImageGalleryItemPrefab, parentContainer, pointsContainer;
+    public GameObject scrollSnapContainer, ImageGalleryContainer, ImageGalleryItemPrefab, parentContainer, pointsContainer, togglePrefab;
+    public ToggleGroup paginationToggleGroup;
 
     private bool gettingMoreRewards, gettingMorePartners;
     public Root rewardsResponse;
@@ -70,22 +71,33 @@ public class RewardsViewModel : ViewModel
         OnClickReloadPartners();
         HideAds();
         GetAds();
-        ApiManager.instance.UpdateUsersPoints();
-        User user = ApiManager.instance.GetUser();
-        if (user != null)
+        ApiManager.instance.UpdateUsersPoints((object[] response) =>
         {
-            pointsText.text = $"Available Points: {user.related.points}";
-        }
-        StartCoroutine(WaitAFrame());
+            User user = ApiManager.instance.GetUser();
+
+            if (user != null)
+            {
+                pointsText.text = $"Available Points: {user.related.points}";
+            }
+            StartCoroutine(WaitAFrame());
+
+        });
+
     }
 
 
     public void GetAds()
     {
         scrollSnapContainer.SetActive(true);
+
         ApiManager.instance.GetAdvertisements((object[] response) =>
         {
-            scrollSnapContainer.AddComponent<SimpleScrollSnap>();
+            SimpleScrollSnap scrollSnap = scrollSnapContainer.AddComponent<SimpleScrollSnap>();
+            if(ads.results.Length > 1)
+            {
+                scrollSnap.Pagination = paginationToggleGroup;
+                scrollSnap.ToggleNavigation = true;
+            }
             long responseCode = (long)response[0];
             string responseText = response[1].ToString();
             if (responseCode == 200)
@@ -96,17 +108,23 @@ public class RewardsViewModel : ViewModel
                 {
                     foreach (var media in ads.results)
                     {
+                        if(ads.results.Length > 1)
+                        {
+                            GameObject toggleItem = Instantiate(togglePrefab, paginationToggleGroup.transform);
+                            toggleItem.GetComponent<Toggle>().group = paginationToggleGroup;
+                        }
                         GameObject imageItem = Instantiate(ImageGalleryItemPrefab, ImageGalleryContainer.transform);
                         if (media.main.type.ToLower() == "video")
                         {
                             imageItem.GetComponent<ImageInterface>().setVideo(media.main.absolute_url);
-
+                            imageItem.GetComponent<ImageInterface>().setAdLink(media.url);
                         }
                         else
                         {
                             ApiManager.instance.SetImageFromUrl(media.main.absolute_url, (Sprite response) =>
                             {
                                 imageItem.GetComponent<ImageInterface>().setImage(response);
+                                imageItem.GetComponent<ImageInterface>().setAdLink(media.url);
                             });
                         }
                     }

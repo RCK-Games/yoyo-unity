@@ -9,16 +9,17 @@ public class testVideo : MonoBehaviour
     public RawImage rawImage;
 
 
-    public RenderTexture rt;
+    private RenderTexture rt;
     
     void Start() {
-        setVideo("http://64.227.105.243/storage/events/HP9FY9Unjzvf4Yqb3yXZK6K0jPrurxF3QQYSGjXi.mp4");
+        setVideo("https://admin.yoyotheclub.com/storage/advertisements/imGIvizO7r7k1dVrFef4WeQhTzWyXS6w2EjH45Tv.mp4");
     }
 
 
     public void setVideo(string link)
     {
         rt = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
+        rt.depthStencilFormat = UnityEngine.Experimental.Rendering.GraphicsFormat.D16_UNorm;
         rt.Create();
         video.url = link;
         video.targetTexture = rt;

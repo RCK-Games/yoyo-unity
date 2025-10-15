@@ -13,7 +13,8 @@ public class PlacesInfoViewModel : ViewModel
     public GameObject musicLineUpContainer, locationContainer, timeContainer, TagsContainer, tagParent, tagItemPrefab, FacebookButton, InstagramButton, WebsiteButton;
     public GameObject costRateContainer, paymentOptionsContainer, dressCodeContainer, socialMediaContainer, timeTextPrefab, timeIcon, timeTextContainer;
     public RectTransform contentRebuild;
-    public GameObject ImageGalleryContainer, ImageGalleryItemPrefab, scrollSnapContainer, dressCodeSpacer;
+    public ToggleGroup paginationToggleGroup;
+    public GameObject ImageGalleryContainer, ImageGalleryItemPrefab, scrollSnapContainer, togglePrefab;
 
     public List<GameObject> costRate = new List<GameObject>();
     public List<GameObject> paymentOptions = new List<GameObject>();
@@ -82,6 +83,10 @@ public class PlacesInfoViewModel : ViewModel
         eventLink = "";
         googleMapsLink = "";
         scrollRect.verticalNormalizedPosition = 1;
+        foreach (Transform child in paginationToggleGroup.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
     }
 
     public void OnClickReserve()
@@ -144,14 +149,23 @@ public class PlacesInfoViewModel : ViewModel
             tagParent.SetActive(false);
         }
 
-        scrollSnapContainer.AddComponent<SimpleScrollSnap>();
+        SimpleScrollSnap scrollSnap = scrollSnapContainer.AddComponent<SimpleScrollSnap>();
+        if(_place.gallery != null && _place.gallery.Count > 1)
+        {
+            scrollSnap.Pagination = paginationToggleGroup;
+            scrollSnap.ToggleNavigation = true;
+        }
 
         if (_place.gallery != null && _place.gallery.Count > 0)
         {
             foreach (var media in _place.gallery)
             {
                 GameObject imageItem = Instantiate(ImageGalleryItemPrefab, ImageGalleryContainer.transform);
-
+                if(_place.gallery.Count > 1)
+                {
+                    GameObject toggleItem = Instantiate(togglePrefab, paginationToggleGroup.transform);
+                    toggleItem.GetComponent<Toggle>().group = paginationToggleGroup;
+                }
                 if( media.type.ToLower() == "video")
                 {
                     imageItem.GetComponent<ImageInterface>().setVideo(media.absolute_url);
