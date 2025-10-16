@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 68318504ad0e82c4e91ce0da27a991bf
+guid: 5f81846dd5df66742ae61c674f1fdb64
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8552209212697060374
-    second: "Rect\xE1ngulo 1024_0"
+      213: 7092554360250432917
+    second: Glass back@3x_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Rect\xE1ngulo 1024_0"
+      name: Glass back@3x_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 1024
+        width: 1146
+        height: 783
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 50, y: 50, z: 50, w: 50}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 614a1a7a7fc8fa670800000000000000
-      internalID: 8552209212697060374
+      spriteID: 59dffd8dc90dd6260800000000000000
+      internalID: 7092554360250432917
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 70f26d839a143cf4d97c52a407e91d12
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "Rect\xE1ngulo 1024_0": 8552209212697060374
+      Glass back@3x_0: 7092554360250432917
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

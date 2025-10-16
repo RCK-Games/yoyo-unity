@@ -93,27 +93,29 @@ public class RewardsViewModel : ViewModel
         ApiManager.instance.GetAdvertisements((object[] response) =>
         {
             SimpleScrollSnap scrollSnap = scrollSnapContainer.AddComponent<SimpleScrollSnap>();
-            if(ads.results.Length > 1)
-            {
-                scrollSnap.Pagination = paginationToggleGroup;
-                scrollSnap.ToggleNavigation = true;
-            }
+            
             long responseCode = (long)response[0];
             string responseText = response[1].ToString();
             if (responseCode == 200)
             {
                 advertisement _ads = JsonUtility.FromJson<advertisement>(responseText);
                 ads = _ads;
+                if(ads.results.Length > 1)
+                {
+                    scrollSnap.Pagination = paginationToggleGroup;
+                    scrollSnap.ToggleNavigation = true;
+                }
                 if (ads.results != null && ads.results.Length > 0)
                 {
                     foreach (var media in ads.results)
                     {
+
+                        GameObject imageItem = Instantiate(ImageGalleryItemPrefab, ImageGalleryContainer.transform);
                         if(ads.results.Length > 1)
                         {
                             GameObject toggleItem = Instantiate(togglePrefab, paginationToggleGroup.transform);
                             toggleItem.GetComponent<Toggle>().group = paginationToggleGroup;
                         }
-                        GameObject imageItem = Instantiate(ImageGalleryItemPrefab, ImageGalleryContainer.transform);
                         if (media.main.type.ToLower() == "video")
                         {
                             imageItem.GetComponent<ImageInterface>().setVideo(media.main.absolute_url);

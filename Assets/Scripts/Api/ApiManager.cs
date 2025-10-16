@@ -88,6 +88,11 @@ public class ApiManager : MonoBehaviour
         });
     }
 
+    public void UpdateImageLocally(Gallery _image)
+    {
+        currentUser.related.image = _image;
+    }
+
     //API Methods
 
     public void SignIn(SignInRequest signInData, Action<object[]> callback)

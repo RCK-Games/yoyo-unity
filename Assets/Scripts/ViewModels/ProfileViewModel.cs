@@ -6,7 +6,7 @@ public class ProfileViewModel : ViewModel
 {
     public User currentUser;
     public TextMeshProUGUI nameValueText, phoneValueText, emailValueText, idValueText, drinkValueText, foodValueText, musicValueText, pointsValueText;
-    public GameObject profileDefault, deleteButton;
+    public GameObject profileDefault;
     public Image avatarImage;
 
     void OnEnable()
@@ -33,14 +33,13 @@ public class ProfileViewModel : ViewModel
                 {
                     avatarImage.gameObject.SetActive(true);
                     profileDefault.SetActive(false);
-                    deleteButton.SetActive(true);
                     ApiManager.instance.SetImageFromUrl(currentUser.related.image.absolute_url, (Sprite response) =>
                     {
                         avatarImage.sprite = response;
                     });
-                }else
+                }
+                else
                 {
-                    deleteButton.SetActive(false);
                     profileDefault.SetActive(true);
                     avatarImage.gameObject.SetActive(false);
                 }
@@ -48,11 +47,18 @@ public class ProfileViewModel : ViewModel
             }
             else
             {
-                deleteButton.SetActive(false);
                 profileDefault.SetActive(true);
                 avatarImage.gameObject.SetActive(false);
             }
         }
+    }
+    
+    public void OnClickEdit(GameObject menu)
+    {
+        if(avatarImage.sprite != null && avatarImage.gameObject.activeSelf)
+            menu.SetActive(true);
+        else
+            ShowMediaPicker();
     }
 
     public void deleteAvatar()
@@ -65,9 +71,10 @@ public class ProfileViewModel : ViewModel
                 string responseText = response[1].ToString();
                 if (responseCode == 200)
                 {
+                    ImageResponse imageResponse = JsonUtility.FromJson<ImageResponse>(responseText);
+                    ApiManager.instance.UpdateImageLocally(imageResponse.image);
                     avatarImage.gameObject.SetActive(false);
                     profileDefault.SetActive(true);
-                    deleteButton.SetActive(false);
                 }
                 NewScreenManager.instance.ShowLoadingScreen(false);
             });
@@ -100,14 +107,14 @@ public class ProfileViewModel : ViewModel
                         string responseText = response[1].ToString();
                         if (responseCode == 200)
                         {
+                            ImageResponse imageResponse = JsonUtility.FromJson<ImageResponse>(responseText);
+                            ApiManager.instance.UpdateImageLocally(imageResponse.image);
                             avatarImage.gameObject.SetActive(true);
-                            profileDefault.SetActive(false); 
-                            deleteButton.SetActive(true);  
+                            profileDefault.SetActive(false);  
                         }
                         else
                         {
                             profileDefault.SetActive(true);
-                            deleteButton.SetActive(false);
                             avatarImage.gameObject.SetActive(false);
                         }
                         NewScreenManager.instance.ShowLoadingScreen(false);

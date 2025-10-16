@@ -23,7 +23,7 @@ public class related
     public string gender;
     public string phone;
     public int points;
-    public int total_points; 
+    public int total_points;
     public string pronouns;
     public string access_code_id;
     public string taste_drink;
@@ -31,7 +31,13 @@ public class related
     public string taste_food;
     public Gallery image;
     public Medium media;
-    
+
+}
+
+[System.Serializable]
+public class ImageResponse
+{
+    public Gallery image;
 }
 
 [Serializable]

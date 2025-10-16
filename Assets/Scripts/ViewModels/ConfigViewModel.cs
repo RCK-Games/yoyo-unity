@@ -18,7 +18,6 @@ public class ConfigViewModel : ViewModel
         {
             enableWithRewards();
         }
-        type = "";
     }
 
     void Start()
