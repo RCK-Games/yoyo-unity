@@ -23,6 +23,7 @@ public class ApiManager : MonoBehaviour
     }
 
     public string accessToken = "";
+    public string userEmail = "";
     private User currentUser;
     private static string phoneNumber = "8331021023";
     private static string BASE_API_URL = "https://admin.yoyotheclub.com/api/v1";
@@ -41,10 +42,20 @@ public class ApiManager : MonoBehaviour
     private static string UPDATE_POINTS_ENDPOINT = BASE_API_URL + "/auth/points";
     private static string UPLOAD_IMAGE_ENDPOINT = BASE_API_URL + "/auth/image";
 
-    
+
     public User GetUser()
     {
         return currentUser;
+    }
+
+    public void SetUserEmail(string email)
+    {
+        userEmail = email;
+    }
+
+    public string GetUserEmail()
+    {
+        return userEmail;
     }
 
     public string GetUserId()
@@ -96,6 +107,7 @@ public class ApiManager : MonoBehaviour
 
     public void SignIn(SignInRequest signInData, Action<object[]> callback)
     {
+        //SetUserEmail(signInData.email);
         string jsonData = JsonUtility.ToJson(signInData);
         StartCoroutine(MakePostRequest(SIGNIN_ENDPOINT, jsonData, callback, false));
     }

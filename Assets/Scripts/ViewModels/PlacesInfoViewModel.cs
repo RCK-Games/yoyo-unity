@@ -14,7 +14,7 @@ public class PlacesInfoViewModel : ViewModel
     public GameObject costRateContainer, paymentOptionsContainer, dressCodeContainer, socialMediaContainer, timeTextPrefab, timeIcon, timeTextContainer;
     public RectTransform contentRebuild;
     public ToggleGroup paginationToggleGroup;
-    public GameObject ImageGalleryContainer, ImageGalleryItemPrefab, scrollSnapContainer, togglePrefab;
+    public GameObject ImageGalleryContainer, ImageGalleryItemPrefab, scrollSnapContainer, togglePrefab, paddingRight, paddingLeft;
 
     public List<GameObject> costRate = new List<GameObject>();
     public List<GameObject> paymentOptions = new List<GameObject>();
@@ -47,7 +47,11 @@ public class PlacesInfoViewModel : ViewModel
         timeContainer.SetActive(true);
         foreach (Transform child in TagsContainer.transform)
         {
-            GameObject.Destroy(child.gameObject);
+            if(child.name == tagItemPrefab.name + "(Clone)")
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            
         }
         paymentOptionsContainer.SetActive(true);
         foreach (var option in paymentOptions)
@@ -144,6 +148,8 @@ public class PlacesInfoViewModel : ViewModel
                     tag.GetComponentInChildren<TextMeshProUGUI>().gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(width, 20);
 
                 }
+                paddingLeft.transform.SetAsFirstSibling();
+                paddingRight.transform.SetAsLastSibling();
                 LayoutRebuilder.ForceRebuildLayoutImmediate(TagsContainer.GetComponent<RectTransform>());
             }
             else

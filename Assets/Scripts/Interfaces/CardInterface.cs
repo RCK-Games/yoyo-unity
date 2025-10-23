@@ -59,8 +59,8 @@ public class CardInterface : MonoBehaviour
         {
             nameText.text = user.name;
             idText.text = FormatId(user.id);
-            pointsText.text = $"{user.related.points} POINTS";
-            totalPointsText.text = $"{user.related.total_points} POINTS";
+            pointsText.text = $"{user.related.points} points";
+            totalPointsText.text = $"{user.related.total_points} points";
         }
     }
 
