@@ -5,6 +5,7 @@ public class ConfigViewModel : ViewModel
 {
     public GameObject configContainer, placeVM, rewardsVM;
     public RectTransform finalPosition, firstPosition;
+    public MenuButtonInterface menuButtonInterface, menuButtonInterface2;
 
     private string type;
 
@@ -25,7 +26,6 @@ public class ConfigViewModel : ViewModel
 
     }
 
-
     public void enableWithRewards()
     {
         rewardsVM.SetActive(true);
@@ -42,12 +42,22 @@ public class ConfigViewModel : ViewModel
 
     public void OnClickHide()
     {
+        if (menuButtonInterface.enabled)
+            {
+                menuButtonInterface.closeAnimation();
+            }
+            if (menuButtonInterface2.enabled)
+            {
+                menuButtonInterface2.closeAnimation();
+            }
         configContainer.transform.DOMoveY(firstPosition.transform.position.y, 0.5f).OnComplete(() =>
         {
             placeVM.SetActive(false);
             rewardsVM.SetActive(false);
+
             NewScreenManager.instance.BackToPreviousView();
             type = "";
+            
         });
     }
 

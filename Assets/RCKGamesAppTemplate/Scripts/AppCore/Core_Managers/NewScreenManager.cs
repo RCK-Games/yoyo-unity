@@ -131,6 +131,7 @@ public class NewScreenManager : Manager
                 break;
             default:
                 videoInterface.SetClip(0);
+                videoInterface.CustomAlpha(0.2f);
                 break;
         }
         videoInterface.videoPlayer.Play();

@@ -24,6 +24,7 @@ public class CropProfileImgViewModel : ViewModel
 
         aspectFitter.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
         aspectFitter.aspectRatio = (float)m_avatarImage.sprite.texture.width / m_avatarImage.sprite.texture.height;
+        OnCropButton_OnClick();
 
         //FitImageToScreen(m_avatarImage, m_avatarImage.sprite.texture.width, sprite.texture.height);
     }
@@ -161,12 +162,12 @@ public class CropProfileImgViewModel : ViewModel
         // Adjust to maintain aspect ratio within screen
         if (textureAspect > screenAspect)
         {
-            // Image is wider — limit by width
+            // Image is wider ï¿½ limit by width
             targetHeight = targetWidth / textureAspect;
         }
         else
         {
-            // Image is taller — limit by height
+            // Image is taller ï¿½ limit by height
             targetWidth = targetHeight * textureAspect;
         }
 
