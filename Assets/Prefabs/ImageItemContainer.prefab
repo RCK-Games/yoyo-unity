@@ -62,8 +62,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loader: {fileID: 2199267083659326815}
   image: {fileID: 3465666582657471070}
+  squarePlaceholder: {fileID: 7482667652216324306, guid: b1396c76d3f8e9b44b695a8f6e3db424, type: 3}
   video: {fileID: 5946781274262454084}
   rawImage: {fileID: 1622503344867471575}
+  maskImage: {fileID: 7139930120939688973}
+  mask: {fileID: 5346937186570579326}
   button: {fileID: 1122323301419289671}
   videoObject: {fileID: 5740829887121128108}
   rt: {fileID: 8400000, guid: 7055cc623a3d25e468d79726d5b287ba, type: 2}
@@ -263,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -279,7 +282,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1.54
+  m_PixelsPerUnitMultiplier: 4
 --- !u!114 &5346937186570579326
 MonoBehaviour:
   m_ObjectHideFlags: 0

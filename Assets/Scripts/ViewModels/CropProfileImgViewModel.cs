@@ -44,6 +44,7 @@ public class CropProfileImgViewModel : ViewModel
 
     private IEnumerator CR_Crop()
     {
+        
         yield return new WaitForEndOfFrame();
 
         bool ovalSelection = m_ovalSelectionInput;
@@ -59,6 +60,7 @@ public class CropProfileImgViewModel : ViewModel
 
         ImageCropper.Instance.Show(screenshot, (bool result, Texture originalImage, Texture2D croppedImage) =>
         {
+            NewScreenManager.instance.ShowLoadingScreen(true);
             // If screenshot was cropped successfully
             if (result)
             {

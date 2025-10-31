@@ -1989,8 +1989,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 138.66092, y: -635.709}
-  m_SizeDelta: {x: 277.32184, y: 469.8189}
+  m_AnchoredPosition: {x: 138.66092, y: -634.255}
+  m_SizeDelta: {x: 277.32184, y: 466.911}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &64110817
 MonoBehaviour:
@@ -3137,7 +3137,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -0.24884033, y: 12}
+  m_AnchoredPosition: {x: -0.24884033, y: 8}
   m_SizeDelta: {x: -19.502197, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &105624607
@@ -3212,8 +3212,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.6989002, y: -0.05379963}
-  m_SizeDelta: {x: -15.8069, y: -13.6564}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -14, y: -14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &106277511
 MonoBehaviour:
@@ -3702,8 +3702,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.6989002, y: -0.05379963}
-  m_SizeDelta: {x: -15.8069, y: -13.6564}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -14, y: -14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &124406299
 MonoBehaviour:
@@ -3777,8 +3777,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 108.13532, y: -8.839899}
-  m_SizeDelta: {x: 5.2628, y: 17.679798}
+  m_AnchoredPosition: {x: 7.925149, y: -15}
+  m_SizeDelta: {x: 5.2628, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &127330540
 GameObject:
@@ -4448,7 +4448,7 @@ MonoBehaviour:
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -6031,8 +6031,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.6989002, y: -0.05379963}
-  m_SizeDelta: {x: -15.8069, y: -13.6564}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -14, y: -14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &180824603
 MonoBehaviour:
@@ -7389,7 +7389,7 @@ MonoBehaviour:
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -8598,7 +8598,7 @@ MonoBehaviour:
   m_KeyboardType: 7
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 7
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -9040,8 +9040,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -6}
+  m_AnchoredPosition: {x: 0, y: 5.8491}
+  m_SizeDelta: {x: 0, y: -17.6982}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &268866920
 MonoBehaviour:
@@ -10518,8 +10518,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -4.6}
-  m_SizeDelta: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &330346307
 MonoBehaviour:
@@ -10541,7 +10541,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: All payments must be completed at the establishment.
+  m_text: 'All payments must be completed
+
+    at the establishment.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 00eb9488025ff9f4c9c51e1e3b396795, type: 2}
   m_sharedMaterial: {fileID: 6709486913782174596, guid: 00eb9488025ff9f4c9c51e1e3b396795, type: 2}
@@ -10606,7 +10608,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 20, y: 6.34868, z: 20, w: 0}
+  m_margin: {x: 20, y: 0, z: 20, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -14683,7 +14685,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 13.600098}
+  m_AnchoredPosition: {x: 0, y: 8}
   m_SizeDelta: {x: -20, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &426946515
@@ -15562,8 +15564,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 124.41, y: -15}
-  m_SizeDelta: {x: 224.82, y: 30}
+  m_AnchoredPosition: {x: 66.135635, y: -15}
+  m_SizeDelta: {x: 108.2712, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &451291849
 MonoBehaviour:
@@ -16899,6 +16901,7 @@ MonoBehaviour:
   buttonIcon: {fileID: 1627812639}
   placesViewModel: {fileID: 1035439982}
   rewardsViewModel: {fileID: 0}
+  handlingAnimation: 0
 --- !u!1 &486700598
 GameObject:
   m_ObjectHideFlags: 0
@@ -18905,8 +18908,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 128.66092, y: -8.839899}
-  m_SizeDelta: {x: 5.2628, y: 17.679798}
+  m_AnchoredPosition: {x: 28.450748, y: -15}
+  m_SizeDelta: {x: 5.2628, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &544900410
 GameObject:
@@ -19156,8 +19159,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.6989002, y: -0.05379963}
-  m_SizeDelta: {x: -15.8069, y: -13.6564}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -14, y: -14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &558636831
 MonoBehaviour:
@@ -19231,8 +19234,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 138.92372, y: -8.839899}
-  m_SizeDelta: {x: 5.2628, y: 17.679798}
+  m_AnchoredPosition: {x: 38.71355, y: -15}
+  m_SizeDelta: {x: 5.2628, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &567955703
 GameObject:
@@ -20047,7 +20050,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -13.6}
+  m_AnchoredPosition: {x: 0, y: -8}
   m_SizeDelta: {x: -20, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &596590103
@@ -20713,7 +20716,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -13.5998535}
+  m_AnchoredPosition: {x: 0, y: -8}
   m_SizeDelta: {x: -20, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &614419796
@@ -20930,7 +20933,7 @@ MonoBehaviour:
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -21311,8 +21314,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -6}
+  m_AnchoredPosition: {x: 0, y: 5.8491}
+  m_SizeDelta: {x: 0, y: -17.6982}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &633490644
 MonoBehaviour:
@@ -24657,8 +24660,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 118.398125, y: -8.839899}
-  m_SizeDelta: {x: 5.2628, y: 17.679798}
+  m_AnchoredPosition: {x: 18.18795, y: -15}
+  m_SizeDelta: {x: 5.2628, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &750340079
 GameObject:
@@ -25571,7 +25574,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &774199107
 MonoBehaviour:
@@ -26634,7 +26637,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 870.6184}
+  m_SizeDelta: {x: 0, y: 867.7105}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &801226969
 MonoBehaviour:
@@ -27000,8 +27003,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -6}
+  m_AnchoredPosition: {x: 0, y: 5.8491}
+  m_SizeDelta: {x: 0, y: -17.6982}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &806612821
 MonoBehaviour:
@@ -27697,8 +27700,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -6}
+  m_AnchoredPosition: {x: 0, y: 5.8491}
+  m_SizeDelta: {x: 0, y: -17.6982}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &817639081
 MonoBehaviour:
@@ -29776,7 +29779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 138.66092, y: 0.96069336}
+  m_AnchoredPosition: {x: 138.66092, y: 0.9607}
   m_SizeDelta: {x: 247.32184, y: -1.9214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &887908054
@@ -30187,7 +30190,7 @@ MonoBehaviour:
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -31315,7 +31318,7 @@ MonoBehaviour:
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -31847,7 +31850,7 @@ MonoBehaviour:
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -33893,6 +33896,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: ProfileViewModel, Assembly-CSharp
         m_MethodName: ShowMediaPicker
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1036586214}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -36747,7 +36762,7 @@ MonoBehaviour:
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -37451,7 +37466,7 @@ MonoBehaviour:
   m_KeyboardType: 2
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 2
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -37566,7 +37581,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.24890137, y: -12}
+  m_AnchoredPosition: {x: 0.24890137, y: -8}
   m_SizeDelta: {x: -19.502197, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1120010442
@@ -38204,7 +38219,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 30.8, y: -20}
-  m_SizeDelta: {x: 30, y: 30}
+  m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1142246203
 MonoBehaviour:
@@ -39410,7 +39425,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163303451}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -39420,12 +39435,12 @@ RectTransform:
   - {fileID: 538149017}
   - {fileID: 566146167}
   - {fileID: 1396196732}
-  m_Father: {fileID: 1318688894}
+  m_Father: {fileID: 1528586862}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 12.6}
-  m_SizeDelta: {x: 0, y: -32.3202}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 125.2712, y: -15}
+  m_SizeDelta: {x: 56.9015, y: 30}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1163303453
 MonoBehaviour:
@@ -39440,7 +39455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 10
+    m_Left: 0
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
@@ -40177,8 +40192,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -6}
+  m_AnchoredPosition: {x: 0, y: 5.8491}
+  m_SizeDelta: {x: 0, y: -17.6982}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1172583164
 MonoBehaviour:
@@ -41029,7 +41044,7 @@ MonoBehaviour:
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -41628,7 +41643,7 @@ MonoBehaviour:
   m_KeyboardType: 2
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 2
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -42384,8 +42399,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.6989002, y: -0.05379963}
-  m_SizeDelta: {x: -15.8069, y: -13.6564}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -14, y: -14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1224319252
 MonoBehaviour:
@@ -43682,7 +43697,7 @@ MonoBehaviour:
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -43863,7 +43878,7 @@ MonoBehaviour:
   m_KeyboardType: 2
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 2
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -45414,7 +45429,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 30.8, y: -20}
-  m_SizeDelta: {x: 30, y: 30}
+  m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1311440095
 MonoBehaviour:
@@ -45866,14 +45881,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1633655411}
-  - {fileID: 1163303452}
   - {fileID: 330346306}
   m_Father: {fileID: 64110816}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 138.66092, y: -354.8189}
-  m_SizeDelta: {x: 247.32184, y: 50}
+  m_AnchoredPosition: {x: 138.66092, y: -353.36496}
+  m_SizeDelta: {x: 247.3218, y: 47.0921}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1320601278
 GameObject:
@@ -48325,8 +48339,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -6}
+  m_AnchoredPosition: {x: 0, y: 5.8491}
+  m_SizeDelta: {x: 0, y: -17.6982}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1389515715
 MonoBehaviour:
@@ -48475,8 +48489,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 149.18652, y: -8.839899}
-  m_SizeDelta: {x: 5.2628, y: 17.679798}
+  m_AnchoredPosition: {x: 48.97635, y: -15}
+  m_SizeDelta: {x: 5.2628, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1401582095
 PrefabInstance:
@@ -48794,8 +48808,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -6}
+  m_AnchoredPosition: {x: 0, y: 5.8491}
+  m_SizeDelta: {x: 0, y: -17.6982}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1412147626
 MonoBehaviour:
@@ -52143,8 +52157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.6989002, y: -0.05379963}
-  m_SizeDelta: {x: -15.8069, y: -13.6564}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -14, y: -14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1500970297
 MonoBehaviour:
@@ -52689,6 +52703,7 @@ MonoBehaviour:
   buttonIcon: {fileID: 980369055}
   placesViewModel: {fileID: 0}
   rewardsViewModel: {fileID: 1463777234}
+  handlingAnimation: 0
 --- !u!1 &1517181045
 GameObject:
   m_ObjectHideFlags: 0
@@ -52907,6 +52922,7 @@ RectTransform:
   m_Children:
   - {fileID: 1243326923}
   - {fileID: 451291848}
+  - {fileID: 1163303452}
   m_Father: {fileID: 1646481204}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -57033,7 +57049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 13.4123}
+  m_AnchoredPosition: {x: 0, y: 10.4}
   m_SizeDelta: {x: -199.3742, y: -98.8973}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1620777597
@@ -58629,8 +58645,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -6}
+  m_AnchoredPosition: {x: 0, y: 5.8491}
+  m_SizeDelta: {x: 0, y: -17.6982}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1639104476
 MonoBehaviour:
@@ -58707,7 +58723,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 30.8, y: -20}
-  m_SizeDelta: {x: 30, y: 30}
+  m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1643625177
 MonoBehaviour:
@@ -62528,7 +62544,7 @@ MonoBehaviour:
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -63262,7 +63278,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 30.8, y: -20}
-  m_SizeDelta: {x: 30, y: 30}
+  m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1752659447
 MonoBehaviour:
@@ -64537,7 +64553,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -16, y: -16}
+  m_SizeDelta: {x: -18, y: -18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1795560539
 MonoBehaviour:
@@ -64976,7 +64992,7 @@ MonoBehaviour:
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -65265,8 +65281,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -6}
+  m_AnchoredPosition: {x: 0, y: 5.8491}
+  m_SizeDelta: {x: 0, y: -17.6982}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1837711229
 MonoBehaviour:
@@ -68533,7 +68549,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 13.6}
+  m_AnchoredPosition: {x: 0, y: 8}
   m_SizeDelta: {x: -20, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1905898672
@@ -69741,8 +69757,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -6}
+  m_AnchoredPosition: {x: 0, y: 5.8491}
+  m_SizeDelta: {x: 0, y: -17.6982}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1952095722
 MonoBehaviour:
@@ -72263,7 +72279,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0.24890137, y: 12}
+  m_AnchoredPosition: {x: 0.24890137, y: 8}
   m_SizeDelta: {x: -19.502197, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2019927747
@@ -73811,6 +73827,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1036586214}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2052389603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74342,7 +74370,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 138.66092, y: -429.8189}
+  m_AnchoredPosition: {x: 138.66092, y: -426.911}
   m_SizeDelta: {x: 247.32184, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2065534368
@@ -74761,7 +74789,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.24884033, y: -11.999756}
+  m_AnchoredPosition: {x: -0.24884033, y: -8}
   m_SizeDelta: {x: -19.502197, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2069414158
@@ -75384,7 +75412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 13.4123}
+  m_AnchoredPosition: {x: 0, y: 10.4}
   m_SizeDelta: {x: -199.3742, y: -98.8973}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2090975927
@@ -76032,7 +76060,7 @@ MonoBehaviour:
   m_KeyboardType: 7
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 7
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -77522,7 +77550,7 @@ MonoBehaviour:
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_HideSoftKeyboard: 0
+  m_HideSoftKeyboard: 1
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 10
@@ -77809,7 +77837,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1570402124968099724, guid: 2f44da7b9131517469c4692b98bfc921, type: 3}
+  m_Sprite: {fileID: 8192239057680630909, guid: 12982b09f4a3d0a46ad65f05a4ff80d4, type: 3}
   m_Type: 1
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -78378,8 +78406,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1570402124968099724, guid: 2f44da7b9131517469c4692b98bfc921, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 7655343860514203980, guid: 715f73bbbd2e23745b262953b3562d7a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4

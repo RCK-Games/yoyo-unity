@@ -29,14 +29,14 @@ public class ConfigViewModel : ViewModel
     public void enableWithRewards()
     {
         rewardsVM.SetActive(true);
-        configContainer.transform.DOMoveY(finalPosition.transform.position.y, 0.5f);
+        configContainer.transform.DOMoveY(finalPosition.transform.position.y, 0.25f);
         type = "rewards";
     }
 
     public void enableWithPlaces()
     {
         placeVM.SetActive(true);
-        configContainer.transform.DOMoveY(finalPosition.transform.position.y, 0.5f);
+        configContainer.transform.DOMoveY(finalPosition.transform.position.y, 0.25f);
         type = "places";
     }
 
@@ -50,7 +50,7 @@ public class ConfigViewModel : ViewModel
             {
                 menuButtonInterface2.closeAnimation();
             }
-        configContainer.transform.DOMoveY(firstPosition.transform.position.y, 0.5f).OnComplete(() =>
+        configContainer.transform.DOMoveY(firstPosition.transform.position.y, 0.25f).OnComplete(() =>
         {
             placeVM.SetActive(false);
             rewardsVM.SetActive(false);
@@ -63,6 +63,7 @@ public class ConfigViewModel : ViewModel
 
     public void OnClickOpenProfile()
     {
+        NewScreenManager.instance.BackToPreviousView();
         NewScreenManager.instance.ChangeToMainView(ViewID.ProfileViewModel, true);
     }
     public void OnClickLogOut()
@@ -72,6 +73,7 @@ public class ConfigViewModel : ViewModel
     }
     public void OnClickOpenFAQ()
     {
+        NewScreenManager.instance.BackToPreviousView();
         NewScreenManager.instance.ChangeToMainView(ViewID.FAQViewModel, true);
     }
 

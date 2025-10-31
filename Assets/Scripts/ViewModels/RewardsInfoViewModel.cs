@@ -111,8 +111,10 @@ public class RewardsInfoViewModel : ViewModel
                 }
                 else
                 {
+                    imageItem.GetComponent<ImageInterface>().takeOutMask();
                     ApiManager.instance.SetImageFromUrl(media.absolute_url, (Sprite response) =>
                     {
+                        
                         imageItem.GetComponent<ImageInterface>().setImage(response);
                     });
                 }
@@ -127,8 +129,10 @@ public class RewardsInfoViewModel : ViewModel
             else
             {
                 GameObject imageItem = Instantiate(ImageGalleryItemPrefab, ImageGalleryContainer.transform);
+                imageItem.GetComponent<ImageInterface>().takeOutMask();
                 ApiManager.instance.SetImageFromUrl(_reward.media[0].absolute_url, (Sprite response) =>
                 {
+                    
                     imageItem.GetComponent<ImageInterface>().setImage(response);
                 });
             }

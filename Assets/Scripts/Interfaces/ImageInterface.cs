@@ -6,14 +6,30 @@ public class ImageInterface : MonoBehaviour
 {
     public GameObject loader;
     public Image image;
+    public Sprite squarePlaceholder;
     public VideoPlayer video;
     public RawImage rawImage;
+    public Image maskImage;
+    public Mask mask;
 
     public Button button;
 
     public GameObject videoObject;
-    
+
     public RenderTexture rt;
+    
+    public void takeOutMask()
+    {
+        if(maskImage == null)
+        {
+            return;
+        }
+        maskImage.sprite = squarePlaceholder;
+        if(mask != null)
+        {
+            mask.enabled = false;
+        }
+    }
 
 
     public void setImage(Sprite sprite)

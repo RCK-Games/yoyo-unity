@@ -35,6 +35,7 @@ public class ProfileViewModel : ViewModel
                     profileDefault.SetActive(false);
                     ApiManager.instance.SetImageFromUrl(currentUser.related.image.absolute_url, (Sprite response) =>
                     {
+                        
                         avatarImage.sprite = response;
                     });
                 }

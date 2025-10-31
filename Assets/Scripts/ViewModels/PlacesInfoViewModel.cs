@@ -141,7 +141,7 @@ public class PlacesInfoViewModel : ViewModel
                     float width = 0;
                     GameObject tag = Instantiate(tagItemPrefab, TagsContainer.transform);
                     tag.GetComponentInChildren<TextMeshProUGUI>().text = genre.Trim();
-                    width = tag.GetComponentInChildren<TextMeshProUGUI>().preferredWidth + 20;
+                    width = tag.GetComponentInChildren<TextMeshProUGUI>().preferredWidth + 15;
                     tag.GetComponent<RectTransform>().sizeDelta = new Vector2(width, 15);
                     tag.GetComponentInChildren<Image>().gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(width, 15);
                     tag.GetComponentInChildren<ContentSizeFitter>().enabled = false;
@@ -186,8 +186,10 @@ public class PlacesInfoViewModel : ViewModel
                 }
                 else
                 {
+                    imageItem.GetComponent<ImageInterface>().takeOutMask();
                     ApiManager.instance.SetImageFromUrl(media.absolute_url, (Sprite response) =>
                     {
+                        
                         imageItem.GetComponent<ImageInterface>().setImage(response);
                     });
                 }
@@ -202,8 +204,10 @@ public class PlacesInfoViewModel : ViewModel
             else
             {
                 GameObject imageItem = Instantiate(ImageGalleryItemPrefab, ImageGalleryContainer.transform);
+                imageItem.GetComponent<ImageInterface>().takeOutMask();
                 ApiManager.instance.SetImageFromUrl(_place.media[0].absolute_url, (Sprite response) =>
                 {
+                    
                     imageItem.GetComponent<ImageInterface>().setImage(response);
                 });
             }
