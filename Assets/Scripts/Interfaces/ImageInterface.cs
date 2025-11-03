@@ -17,7 +17,7 @@ public class ImageInterface : MonoBehaviour
     public GameObject videoObject;
 
     public RenderTexture rt;
-    
+    public bool takeOutMaskOnStart = false;    
     public void takeOutMask()
     {
         if(maskImage == null)
@@ -25,10 +25,7 @@ public class ImageInterface : MonoBehaviour
             return;
         }
         maskImage.sprite = squarePlaceholder;
-        if(mask != null)
-        {
-            mask.enabled = false;
-        }
+        takeOutMaskOnStart = true;
     }
 
 
@@ -42,7 +39,10 @@ public class ImageInterface : MonoBehaviour
             videoObject.SetActive(false);
         }
         image.preserveAspect = true;
-
+        if (takeOutMaskOnStart)
+        {
+            maskImage.sprite = null;
+        }
     }
 
     public void setAdLink(string link)
