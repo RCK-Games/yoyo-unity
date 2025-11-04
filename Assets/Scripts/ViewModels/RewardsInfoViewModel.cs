@@ -89,6 +89,7 @@ public class RewardsInfoViewModel : ViewModel
         isFromRewards = _isFromRewards;
 
         SimpleScrollSnap scrollSnap = scrollSnapContainer.AddComponent<SimpleScrollSnap>();
+        scrollSnap.AutomaticLayoutSpacing = 0f;
         if(_reward.gallery != null && _reward.gallery.Length > 1)
         {
             scrollSnap.Pagination = paginationToggleGroup;

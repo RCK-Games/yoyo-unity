@@ -163,6 +163,8 @@ public class PlacesInfoViewModel : ViewModel
         }
 
         SimpleScrollSnap scrollSnap = scrollSnapContainer.AddComponent<SimpleScrollSnap>();
+        scrollSnap.AutomaticLayoutSpacing = 0f;
+        Debug.Log(scrollSnap.AutomaticLayoutMargins);
         if(_place.gallery != null && _place.gallery.Count > 1)
         {
             scrollSnap.Pagination = paginationToggleGroup;

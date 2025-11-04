@@ -97,7 +97,7 @@ public class RewardsViewModel : ViewModel
         ApiManager.instance.GetAdvertisements((object[] response) =>
         {
             SimpleScrollSnap scrollSnap = scrollSnapContainer.AddComponent<SimpleScrollSnap>();
-            
+            scrollSnap.AutomaticLayoutSpacing = 0f;
             long responseCode = (long)response[0];
             string responseText = response[1].ToString();
             if (responseCode == 200)

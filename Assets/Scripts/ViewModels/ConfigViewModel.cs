@@ -42,16 +42,26 @@ public class ConfigViewModel : ViewModel
 
     public void OnClickHide()
     {
-        if (menuButtonInterface.enabled)
-            {
+        if (menuButtonInterface.gameObject.activeInHierarchy)
+        {
+                Debug.Log("Closing menu ani");
                 menuButtonInterface.closeAnimation();
-            }
-            if (menuButtonInterface2.enabled)
-            {
+        }
+        else
+        {
+            if (menuButtonInterface2.gameObject.activeInHierarchy)
+        {
+                Debug.Log("Closing menu ani 2");
                 menuButtonInterface2.closeAnimation();
             }
+        }
+            
         configContainer.transform.DOMoveY(firstPosition.transform.position.y, 0.25f).OnComplete(() =>
         {
+            if(NewScreenManager.instance.GetCurrentView().viewID != ViewID.ConfigViewModel)
+            {
+                return;
+            }
             placeVM.SetActive(false);
             rewardsVM.SetActive(false);
 
