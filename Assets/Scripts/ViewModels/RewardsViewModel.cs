@@ -75,8 +75,7 @@ public class RewardsViewModel : ViewModel
         OnClickReloadPartners();
         HideAds();
         GetAds();
-        ApiManager.instance.UpdateUsersPoints((object[] response) =>
-        {
+        ApiManager.instance.GetInfoFromToken((object[] response) => {
             User user = ApiManager.instance.GetUser();
 
             if (user != null)
@@ -84,9 +83,8 @@ public class RewardsViewModel : ViewModel
                 pointsText.text = $"Available Points: {user.related.points}";
             }
             StartCoroutine(WaitAFrame());
-
+            
         });
-
     }
 
 

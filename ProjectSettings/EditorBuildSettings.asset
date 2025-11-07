@@ -11,12 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/FirstScene 2.unity
     guid: f9340b13d22e74042948595a91a98f3a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TestVideoScene.unity
     guid: fe7b8aad4342fc445840b7a13afd15c1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FirstScene.unity
-    guid: 4e1ce5b768bea2b49ac5726e80fd7156
+    guid: b8652bb52d74d054a87d7f5381fdcb75
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

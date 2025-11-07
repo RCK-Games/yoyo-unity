@@ -41,6 +41,29 @@ public class ApiManager : MonoBehaviour
     private static string GET_ADVERTISEMENTS_ENDPOINT = BASE_API_URL + "/advertisements";
     private static string UPDATE_POINTS_ENDPOINT = BASE_API_URL + "/auth/points";
     private static string UPLOAD_IMAGE_ENDPOINT = BASE_API_URL + "/auth/image";
+    private static string GET_INFO_FROM_TOKEN_ENDPOINT = BASE_API_URL + "/auth/info";
+
+    public void Awake()
+    {
+        if(accessToken != "")
+        {
+            NewScreenManager.instance.ShowLoadingScreen(true);
+            GetInfoFromToken((object[] response) =>
+            {
+                long responseCode = (long)response[0];
+                string responseText = response[1].ToString();
+                NewScreenManager.instance.ShowLoadingScreen(false);
+                if (responseCode == 200)
+                {
+                    NewScreenManager.instance.ChangeToMainView(ViewID.PlacesViewModel, false);
+                    LoginResponse loginResponse = JsonUtility.FromJson<LoginResponse>(responseText);
+                }
+            });
+        }
+    }
+
+
+
 
 
     public User GetUser()
@@ -110,6 +133,22 @@ public class ApiManager : MonoBehaviour
         //SetUserEmail(signInData.email);
         string jsonData = JsonUtility.ToJson(signInData);
         StartCoroutine(MakePostRequest(SIGNIN_ENDPOINT, jsonData, callback, false));
+    }
+
+    public void GetInfoFromToken(Action<object[]> callback)
+    {
+        StartCoroutine(MakeGetRequest(GET_INFO_FROM_TOKEN_ENDPOINT, (response) =>
+        {
+            long responseCode = (long)response[0];
+            string responseText = response[1].ToString();
+
+            if (responseCode == 200)
+            {
+                UserInfo infoResponse = JsonUtility.FromJson<UserInfo>(responseText);
+                currentUser = infoResponse.user;
+            }
+            callback(response);
+        }, accessToken));
     }
 
     public int GetUsersPoints()
