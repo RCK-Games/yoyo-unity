@@ -54,17 +54,14 @@ public class ReloadInterface : MonoBehaviour
             _visualsSetAtTheStart = true;
         }
 
-        Debug.Log(_vector + "//----//");
-
         if (_vector < -20 && _vector >-50)
         {
-            Debug.Log("1");
             topLabelImage.sprite = topLabels[1];
         }
 
         if (_vector < (BASE_TOP + loadMoreObjectsLimiter))
         {
-            Debug.Log("2");
+
             if (!_isLoading)
             {
                 PrepareReload();

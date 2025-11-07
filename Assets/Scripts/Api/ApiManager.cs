@@ -43,9 +43,13 @@ public class ApiManager : MonoBehaviour
     private static string UPLOAD_IMAGE_ENDPOINT = BASE_API_URL + "/auth/image";
     private static string GET_INFO_FROM_TOKEN_ENDPOINT = BASE_API_URL + "/auth/info";
 
+    // PlayerPrefs keys for local persistence
+    private const string PREFS_ACCESS_TOKEN = "yoyo_access_token";
+
     public void Awake()
     {
-        if(accessToken != "")
+        accessToken = LoadAccessToken();
+        if(!string.IsNullOrEmpty(accessToken))
         {
             NewScreenManager.instance.ShowLoadingScreen(true);
             GetInfoFromToken((object[] response) =>
@@ -57,6 +61,12 @@ public class ApiManager : MonoBehaviour
                 {
                     NewScreenManager.instance.ChangeToMainView(ViewID.PlacesViewModel, false);
                     LoginResponse loginResponse = JsonUtility.FromJson<LoginResponse>(responseText);
+                }
+                else
+                {
+                    // Token invalid/expired; clear locally so we don't loop
+                    ClearAccessToken();
+                    accessToken = "";
                 }
             });
         }
@@ -188,6 +198,7 @@ public class ApiManager : MonoBehaviour
                 LoginResponse loginResponse = JsonUtility.FromJson<LoginResponse>(responseText);
                 accessToken = loginResponse.access_token;
                 currentUser = loginResponse.user;
+                SaveAccessToken(accessToken);
             }
             callback(response);
         }, false));
@@ -345,7 +356,7 @@ public class ApiManager : MonoBehaviour
 
             return string.Join("&", queryParams);
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return "";
         }
@@ -438,6 +449,28 @@ public class ApiManager : MonoBehaviour
         {
             string errorText = request.error;
             callback(new object[] { responseCode, errorText });
+        }
+    }
+
+    // Local persistence helpers (PlayerPrefs works on iOS/Android)
+    private void SaveAccessToken(string token)
+    {
+        if (string.IsNullOrEmpty(token)) return;
+        PlayerPrefs.SetString(PREFS_ACCESS_TOKEN, token);
+        PlayerPrefs.Save();
+    }
+
+    private string LoadAccessToken()
+    {
+        return PlayerPrefs.GetString(PREFS_ACCESS_TOKEN, "");
+    }
+
+    public void ClearAccessToken()
+    {
+        if (PlayerPrefs.HasKey(PREFS_ACCESS_TOKEN))
+        {
+            PlayerPrefs.DeleteKey(PREFS_ACCESS_TOKEN);
+            PlayerPrefs.Save();
         }
     }
 

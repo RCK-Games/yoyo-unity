@@ -15584,7 +15584,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 66.135635, y: -15}
-  m_SizeDelta: {x: 108.2712, y: 30}
+  m_SizeDelta: {x: 92, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &451291849
 MonoBehaviour:
@@ -30049,7 +30049,7 @@ MonoBehaviour:
   FacebookButton: {fileID: 1198881076}
   InstagramButton: {fileID: 1056080806}
   WebsiteButton: {fileID: 1064636338}
-  costRateContainer: {fileID: 0}
+  costRateContainer: {fileID: 647395889}
   paymentOptionsContainer: {fileID: 1646481203}
   dressCodeContainer: {fileID: 1585207525}
   socialMediaContainer: {fileID: 2127262851}
@@ -33851,11 +33851,11 @@ RectTransform:
   - {fileID: 720746576}
   m_Father: {fileID: 1338601036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 240, y: -19.499998}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -8.2, y: -6.999996}
   m_SizeDelta: {x: 25, y: 25}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &1013308437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47026,7 +47026,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1338601036}
   - component: {fileID: 1338601038}
-  - component: {fileID: 1338601037}
+  - component: {fileID: 1338601039}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -47058,7 +47058,15 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -5.36}
   m_SizeDelta: {x: -20, y: 110.7201}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1338601037
+--- !u!222 &1338601038
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338601035}
+  m_CullTransparentMesh: 1
+--- !u!114 &1338601039
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47078,7 +47086,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8552209212697060374, guid: 68318504ad0e82c4e91ce0da27a991bf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68318504ad0e82c4e91ce0da27a991bf, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -47087,15 +47095,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 7.02
---- !u!222 &1338601038
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338601035}
-  m_CullTransparentMesh: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!1 &1342423720
 GameObject:
   m_ObjectHideFlags: 0
@@ -63448,7 +63448,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8552209212697060374, guid: 68318504ad0e82c4e91ce0da27a991bf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68318504ad0e82c4e91ce0da27a991bf, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -63457,7 +63457,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 7.02
+  m_PixelsPerUnitMultiplier: 3
 --- !u!222 &1737292487
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -68530,9 +68530,9 @@ MonoBehaviour:
   m_fontSize: 12
   m_fontSizeBase: 12
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 8
+  m_fontSizeMax: 12
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -68565,7 +68565,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 8.750206, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
