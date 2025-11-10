@@ -6,7 +6,7 @@ public class ProfileViewModel : ViewModel
 {
     public User currentUser;
     public TextMeshProUGUI nameValueText, phoneValueText, emailValueText, idValueText, drinkValueText, foodValueText, musicValueText, pointsValueText;
-    public GameObject profileDefault;
+    public GameObject profileDefault, shimmerObject;
     public Image avatarImage;
 
     void OnEnable()
@@ -33,15 +33,17 @@ public class ProfileViewModel : ViewModel
                 {
                     avatarImage.gameObject.SetActive(true);
                     profileDefault.SetActive(false);
+                    shimmerObject.SetActive(true);
                     ApiManager.instance.SetImageFromUrl(currentUser.related.image.absolute_url, (Sprite response) =>
                     {
-                        
+                        shimmerObject.SetActive(false);
                         avatarImage.sprite = response;
                     });
                 }
                 else
                 {
                     profileDefault.SetActive(true);
+                    shimmerObject.SetActive(false);
                     avatarImage.gameObject.SetActive(false);
                 }
 
@@ -49,6 +51,7 @@ public class ProfileViewModel : ViewModel
             else
             {
                 profileDefault.SetActive(true);
+                shimmerObject.SetActive(false);
                 avatarImage.gameObject.SetActive(false);
             }
         }
@@ -76,6 +79,7 @@ public class ProfileViewModel : ViewModel
                     ApiManager.instance.UpdateImageLocally(imageResponse.image);
                     avatarImage.gameObject.SetActive(false);
                     profileDefault.SetActive(true);
+                    shimmerObject.SetActive(false);
                 }
                 NewScreenManager.instance.ShowLoadingScreen(false);
             });

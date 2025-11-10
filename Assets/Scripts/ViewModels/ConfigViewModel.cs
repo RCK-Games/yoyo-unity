@@ -44,21 +44,19 @@ public class ConfigViewModel : ViewModel
     {
         if (menuButtonInterface.gameObject.activeInHierarchy)
         {
-                Debug.Log("Closing menu ani");
-                menuButtonInterface.closeAnimation();
+            menuButtonInterface.closeAnimation();
         }
         else
         {
             if (menuButtonInterface2.gameObject.activeInHierarchy)
-        {
-                Debug.Log("Closing menu ani 2");
+            {
                 menuButtonInterface2.closeAnimation();
             }
         }
-            
+
         configContainer.transform.DOMoveY(firstPosition.transform.position.y, 0.25f).OnComplete(() =>
         {
-            if(NewScreenManager.instance.GetCurrentView().viewID != ViewID.ConfigViewModel)
+            if (NewScreenManager.instance.GetCurrentView().viewID != ViewID.ConfigViewModel)
             {
                 return;
             }
@@ -67,22 +65,31 @@ public class ConfigViewModel : ViewModel
 
             NewScreenManager.instance.BackToPreviousView();
             type = "";
-            
+
         });
+    }
+    
+    private void ForceCloseAnimation()
+    {
+        menuButtonInterface.HardReset();
+        menuButtonInterface2.HardReset();
     }
 
     public void OnClickOpenProfile()
     {
+        ForceCloseAnimation();
         NewScreenManager.instance.BackToPreviousView();
         NewScreenManager.instance.ChangeToMainView(ViewID.ProfileViewModel, true);
     }
     public void OnClickLogOut()
     {
-        ApiManager.instance.accessToken = "";
+        ForceCloseAnimation();
+        ApiManager.instance.ClearToken();
         NewScreenManager.instance.ChangeToMainView(ViewID.WelcomeViewModel, false);
     }
     public void OnClickOpenFAQ()
     {
+        ForceCloseAnimation();
         NewScreenManager.instance.BackToPreviousView();
         NewScreenManager.instance.ChangeToMainView(ViewID.FAQViewModel, true);
     }

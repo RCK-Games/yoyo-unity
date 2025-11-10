@@ -24,7 +24,7 @@ public class MenuButtonInterface : MonoBehaviour
 
     public void handleAnimation()
     {
-        if(handlingAnimation)
+        if (handlingAnimation)
         {
             return;
         }
@@ -40,7 +40,7 @@ public class MenuButtonInterface : MonoBehaviour
             };
         };
         buttonIcon.transform.DORotate(new Vector3(0, 0, 45), 0.3f);
-        if(placesViewModel != null)
+        if (placesViewModel != null)
         {
             placesViewModel.OnClickOpenConfig();
         }
@@ -48,7 +48,14 @@ public class MenuButtonInterface : MonoBehaviour
         {
             rewardsViewModel.OnClickOpenConfig();
         }
-        
+
+    }
+    
+    public void HardReset()
+    {
+        handlingAnimation = false;
+        handlingCloseAni = false;
+        buttonIcon.transform.rotation = Quaternion.Euler(Vector3.zero);
     }
     
     public void closeAnimation()

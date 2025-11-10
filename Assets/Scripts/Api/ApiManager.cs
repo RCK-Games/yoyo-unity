@@ -49,7 +49,7 @@ public class ApiManager : MonoBehaviour
     public void Awake()
     {
         accessToken = LoadAccessToken();
-        if(!string.IsNullOrEmpty(accessToken))
+        if (!string.IsNullOrEmpty(accessToken))
         {
             NewScreenManager.instance.ShowLoadingScreen(true);
             GetInfoFromToken((object[] response) =>
@@ -70,6 +70,12 @@ public class ApiManager : MonoBehaviour
                 }
             });
         }
+    }
+    
+    public void ClearToken()
+    {
+        ClearAccessToken();
+        accessToken = "";
     }
 
 
