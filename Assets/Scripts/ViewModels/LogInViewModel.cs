@@ -86,12 +86,6 @@ public class LogInViewModel : ViewModel
                 passwordInput.text = "";
 
             }
-            else if (responseCode == 401)
-            {
-                errorMessage.SetActive(true);
-                ErrorResponse errorResponse = JsonUtility.FromJson<ErrorResponse>(responseText);
-
-            }
             else
             {
                 errorMessage.SetActive(true);
